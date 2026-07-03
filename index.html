@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>finFlow – Buchhaltung für Kleingewerbe | FlowStudios</title>
+<meta name="description" content="finFlow: lokale Buchhaltungssoftware für Kleingewerbe. Rechnungen, Angebote, Mahnwesen, EÜR-Export – ohne Cloud, ohne Abo, ohne Datenweitergabe.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060A12;--bg2:#0B1220;--bg3:#101A2C;
+  --s1:#131E30;--s2:#182338;
+  --border:#1E2D42;--border2:rgba(255,255,255,.08);
+  --blue:#4070FF;--blue2:#6990FF;
+  --teal:#00C4B0;--teal2:#00E8D2;
+  --grad:linear-gradient(135deg,#4070FF 0%,#00C4B0 100%);
+  --white:#FFFFFF;
+  --t1:#F0F4FF;--t2:#8899BB;--t3:#4A5C78;
+  --green:#22D3AA;--red:#FF5E7A;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Arial,sans-serif;
+  --mono:ui-monospace,"Cascadia Code","Fira Code",monospace;
+  --r:12px;--r2:20px;--r3:28px;--max:1240px;--nav-h:64px;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:#060A12;color:#F0F4FF;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--font);cursor:pointer}
+::selection{background:rgba(0,196,176,.3);color:#fff}
+.c{max-width:var(--max);margin:0 auto;padding:0 32px}
+.gt{color:#4070FF;background:linear-gradient(135deg,#4070FF,#00C4B0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* NAV */
+.nav{position:fixed;top:0;inset-x:0;z-index:900;height:var(--nav-h);background:rgba(6,10,18,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,.06);transition:border-color .3s}
+.nav.solid{border-color:#1E2D42}
+.nav-i{height:100%;max-width:var(--max);margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-size:1.1rem;font-weight:800;letter-spacing:-.02em}
+.logo-mark{width:30px;height:30px;border-radius:8px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;color:#fff;flex-shrink:0}
+.logo-text b{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-links a{font-size:.875rem;font-weight:500;color:#8899BB;padding:6px 14px;border-radius:8px;transition:color .15s,background .15s}
+.nav-links a:hover{color:#F0F4FF;background:rgba(255,255,255,.05)}
+.nav-pill{background:var(--grad)!important;color:#fff!important;font-weight:700!important;padding:8px 20px!important;border-radius:8px!important}
+.nav-pill:hover{opacity:.85!important}
+
+/* HERO */
+.hero{min-height:100vh;padding:calc(var(--nav-h) + 80px) 0 100px;position:relative;overflow:hidden;display:flex;align-items:center}
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(110px)}
+.o1{width:700px;height:700px;background:radial-gradient(circle,rgba(64,112,255,.2),transparent 70%);top:-150px;right:-80px;animation:d1 18s ease-in-out infinite alternate}
+.o2{width:500px;height:500px;background:radial-gradient(circle,rgba(0,196,176,.15),transparent 70%);bottom:-80px;left:-60px;animation:d2 22s ease-in-out infinite alternate}
+.o3{width:280px;height:280px;background:radial-gradient(circle,rgba(64,112,255,.1),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:d3 14s ease-in-out infinite alternate}
+@keyframes d1{to{transform:translate(-70px,50px) scale(1.1)}}
+@keyframes d2{to{transform:translate(50px,-40px) scale(1.12)}}
+@keyframes d3{to{transform:translate(-50%,-50%) scale(1.2)}}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(64,112,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(64,112,255,.04) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 70% at 50% 30%,black,transparent);pointer-events:none}
+.hero-in{position:relative;z-index:1;width:100%;max-width:var(--max);padding:0 32px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,196,176,.3);background:rgba(0,196,176,.08);color:var(--teal2);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:24px}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:p 2s ease-in-out infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(2.8rem,5.5vw,4.2rem);font-weight:900;line-height:1.06;letter-spacing:-.04em;margin-bottom:28px;color:#F0F4FF}
+.hero-sub{font-size:1.08rem;color:#8899BB;line-height:1.75;max-width:440px;margin-bottom:40px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:10px;font-size:.95rem;font-weight:700;border:none;transition:all .2s;cursor:pointer}
+.btn-main{background:var(--grad);color:#fff;box-shadow:0 4px 24px rgba(64,112,255,.35)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(64,112,255,.5)}
+.btn-out{background:transparent;color:#8899BB;border:1px solid #1E2D42}
+.btn-out:hover{border-color:var(--border2);color:#F0F4FF;background:rgba(255,255,255,.04)}
+.btn svg{width:17px;height:17px;fill:currentColor;flex-shrink:0}
+.ht-row{display:flex;flex-wrap:wrap;gap:16px;font-size:.82rem;font-weight:500;color:#5A6E8A}
+.ht{display:flex;align-items:center;gap:6px}
+.ht::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+/* MOCKUP */
+.mscene{position:relative}
+.mcard{background:#131E30;border:1px solid #1E2D42;border-radius:var(--r3);overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.05);transition:transform .4s ease;transform:perspective(1000px) rotateY(-3deg) rotateX(1deg)}
+.mbar{background:#0B1220;padding:13px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #1E2D42}
+.mdot{width:10px;height:10px;border-radius:50%}
+.mtitle{flex:1;text-align:center;font-size:.72rem;color:#4A5C78;font-weight:500;letter-spacing:.04em}
+.mbody{padding:20px;display:grid;grid-template-columns:108px 1fr;gap:14px}
+.msb{background:#0B1220;border-radius:10px;padding:10px 8px;display:flex;flex-direction:column;gap:3px}
+.mslogo{font-size:.82rem;font-weight:800;letter-spacing:-.02em;color:#F0F4FF;padding:4px 8px;margin-bottom:6px}
+.mslogo b{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.msnav{font-size:.63rem;font-weight:500;color:#4A5C78;padding:5px 8px;border-radius:6px}
+.msnav.a{background:rgba(64,112,255,.15);color:var(--blue2)}
+.mkpis{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
+.mkpi{background:#0B1220;border-radius:8px;padding:8px 10px;border:1px solid #1E2D42}
+.mkl{font-size:.54rem;color:#4A5C78;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.mkv{font-size:.95rem;font-weight:800;color:#F0F4FF}
+.mkv.tc{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.mkv.rc{color:var(--red)}
+.mks{font-size:.5rem;color:#4A5C78;margin-top:2px}
+.mlist{background:#0B1220;border-radius:8px;overflow:hidden;border:1px solid #1E2D42}
+.mlh{display:grid;grid-template-columns:1fr 68px 52px 52px;padding:6px 10px;font-size:.55rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#4A5C78;border-bottom:1px solid #1E2D42;background:rgba(255,255,255,.02)}
+.mlr{display:grid;grid-template-columns:1fr 68px 52px 52px;padding:6px 10px;font-size:.6rem;color:#8899BB;border-bottom:1px solid rgba(255,255,255,.03)}
+.mlr:last-child{border:none}
+.bdg{display:inline-block;padding:2px 6px;border-radius:999px;font-size:.5rem;font-weight:700}
+.bo{background:rgba(64,112,255,.15);color:var(--blue2)}
+.bp{background:rgba(0,196,176,.12);color:var(--teal2)}
+.br{background:rgba(255,94,122,.12);color:var(--red)}
+
+/* TICKER */
+.ticker{border-top:1px solid #1E2D42;border-bottom:1px solid #1E2D42;background:#0B1220;padding:14px 0;overflow:hidden;position:relative}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--bg2),transparent)}
+.ticker::after{right:0;background:linear-gradient(270deg,var(--bg2),transparent)}
+.ttrack{display:flex;width:max-content;animation:tick 30s linear infinite}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.titem{display:inline-flex;align-items:center;gap:10px;padding:0 28px;font-size:.82rem;font-weight:500;color:#4A5C78;white-space:nowrap}
+.titem b{color:#7A8BAA;font-weight:600}
+.tdot{width:4px;height:4px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.tsep{color:var(--border);font-weight:300;font-size:1.2rem;margin:0 8px}
+
+/* SECTIONS */
+section{padding:120px 0;background:#060A12}
+#how{background:#0B1220!important}
+#download{background:#0B1220!important}
+#faq{background:#0B1220!important}
+/* Force dark regardless of system setting */
+@media(prefers-color-scheme:light){
+  body,section{background:#060A12!important;color:#F0F4FF!important}
+  .nav{background:rgba(6,10,18,.92)!important}
+  h2{color:#F0F4FF!important}
+  p,li{color:#8899BB}
+}
+.sh{text-align:center;max-width:600px;margin:0 auto 64px}
+.etag{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.etag.tc{color:#00C4B0}
+.etag.bc{color:#6990FF}
+h2{font-size:clamp(2.1rem,4vw,3rem);font-weight:900;line-height:1.1;letter-spacing:-.035em;margin-bottom:16px;color:#F0F4FF}
+.ssub{font-size:1.05rem;line-height:1.75;color:#8899BB}
+
+/* BENTO */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.bc{background:#131E30;border:1px solid #1E2D42;border-radius:var(--r2);padding:32px;overflow:hidden;position:relative;transition:border-color .3s,background .3s}
+.bc:hover{border-color:rgba(64,112,255,.3);background:#182338}
+.bc::before{content:'';position:absolute;inset:0;border-radius:var(--r2);background:var(--grad);opacity:0;transition:opacity .3s;pointer-events:none}
+.bc:hover::before{opacity:.04}
+.bc1{grid-column:1/8}.bc2{grid-column:8/13}.bc3{grid-column:1/5}.bc4{grid-column:5/9}.bc5{grid-column:9/13}.bc6{grid-column:1/7}.bc7{grid-column:7/13}
+.bcn{font-size:5rem;font-weight:900;line-height:1;position:absolute;right:16px;top:8px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.1;user-select:none;pointer-events:none}
+.bcico{width:44px;height:44px;border-radius:10px;background:rgba(64,112,255,.1);border:1px solid rgba(64,112,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:16px;transition:background .3s,border-color .3s}
+.bc:hover .bcico{background:rgba(64,112,255,.18);border-color:rgba(64,112,255,.35)}
+.bc h3{font-size:1.05rem;font-weight:700;color:#F0F4FF;margin-bottom:10px;letter-spacing:-.01em}
+.bc p{font-size:.9rem;color:#8899BB;line-height:1.7}
+.bc1lay{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start}
+.bc1mini{background:#0B1220;border:1px solid #1E2D42;border-radius:10px;padding:12px;min-width:180px}
+.mf-row{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;padding:6px 10px;background:#131E30;border-radius:7px;margin-bottom:5px}
+.mf-row:last-child{margin:0}
+.mf-l{color:#4A5C78}.mf-t{color:var(--teal);font-weight:700}.mf-r{color:var(--red);font-weight:700}.mf-w{color:#F0F4FF;font-weight:700}
+
+/* HOW */
+#how{background:#0B1220;border-top:1px solid #1E2D42;border-bottom:1px solid #1E2D42}
+.how-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid #1E2D42;border-radius:var(--r2);overflow:hidden;margin-top:64px}
+.how-s{background:#0B1220;padding:44px 36px;position:relative;transition:background .3s}
+.how-s:hover{background:#101A2C}
+.stepn{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--teal);font-family:var(--mono);margin-bottom:20px;display:block}
+.how-s h3{font-size:1.15rem;font-weight:700;color:#F0F4FF;margin-bottom:12px;letter-spacing:-.02em}
+.how-s p{font-size:.92rem;color:#8899BB;line-height:1.72}
+.sarr{position:absolute;right:36px;bottom:36px;font-size:1.2rem;color:var(--teal);opacity:0;transform:translateX(-8px);transition:all .25s}
+.how-s:hover .sarr{opacity:1;transform:translateX(0)}
+
+/* PRODUCT */
+.ps{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.inv-prev{background:#131E30;border:1px solid #1E2D42;border-radius:var(--r3);overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.5)}
+.ibar{background:#0B1220;padding:14px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #1E2D42}
+.ibt{flex:1;text-align:center;font-size:.7rem;color:#4A5C78;font-weight:500;letter-spacing:.05em}
+.ibody{padding:24px}
+.itabs{display:flex;gap:4px;background:#0B1220;border-radius:8px;padding:4px;margin-bottom:18px}
+.itab{flex:1;text-align:center;padding:7px;border-radius:6px;font-size:.65rem;font-weight:600;color:#4A5C78}
+.itab.a{background:rgba(64,112,255,.15);color:var(--blue2)}
+.irow{background:#0B1220;border-radius:10px;padding:14px 16px;margin-bottom:8px;border:1px solid #1E2D42}
+.irow:last-child{margin:0}
+.irt{display:flex;justify-content:space-between;align-items:flex-start}
+.irn{font-size:.65rem;font-weight:700;color:var(--blue2)}
+.irna{font-size:.78rem;font-weight:600;color:#F0F4FF;margin-top:2px}
+.irdt{font-size:.62rem;color:#4A5C78}
+.iram{font-size:.9rem;font-weight:700;color:#F0F4FF}
+.irs{font-size:.58rem;font-weight:700;padding:3px 8px;border-radius:999px;margin-top:4px;display:inline-block}
+.sp{background:rgba(64,112,255,.12);color:var(--blue2)}.pp{background:rgba(0,196,176,.12);color:var(--teal2)}.lp{background:rgba(255,94,122,.12);color:var(--red)}
+.ptxt{}.ptxt .etag{margin-bottom:14px}
+.cl{display:flex;flex-direction:column;gap:14px}
+.ck{display:flex;align-items:flex-start;gap:12px}
+.ckm{width:22px;height:22px;border-radius:6px;background:rgba(0,196,176,.12);border:1px solid rgba(0,196,176,.25);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--teal);flex-shrink:0;margin-top:1px}
+.ckt h4{font-size:.92rem;font-weight:700;color:#F0F4FF;margin-bottom:3px}
+.ckt p{font-size:.85rem;color:#7A8BAA;line-height:1.6}
+
+/* DOWNLOAD */
+#download{background:#0B1220;border-top:1px solid #1E2D42;border-bottom:1px solid #1E2D42}
+.vstrip{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;background:#131E30;border:1px solid #1E2D42;border-radius:12px;padding:14px 28px;margin-bottom:52px}
+.vsl{font-size:.82rem;color:#4A5C78}.vsv{font-family:var(--mono);font-size:.95rem;font-weight:700;color:var(--teal)}.vsd{font-size:.82rem;color:#4A5C78}.vsa{font-size:.82rem;color:var(--blue2);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.dlg{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.dlc{background:#131E30;border:1px solid #1E2D42;border-radius:var(--r3);padding:36px;display:flex;flex-direction:column;gap:24px;transition:border-color .3s}
+.dlc:hover{border-color:rgba(64,112,255,.3)}
+.dlch{display:flex;align-items:center;gap:16px}
+.dlci{width:52px;height:52px;background:var(--grad);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.55rem;flex-shrink:0}
+.dlcn{font-size:1.2rem;font-weight:800;color:#F0F4FF}.dlcr{font-size:.8rem;color:#5A6E8A;margin-top:3px}
+.vtag{display:inline-flex;align-items:center;gap:8px;background:rgba(0,196,176,.08);border:1px solid rgba(0,196,176,.2);padding:6px 14px;border-radius:8px;width:fit-content;font-family:var(--mono);font-size:.83rem;font-weight:700;color:var(--teal)}
+.vtag svg{width:14px;height:14px;stroke:var(--teal);fill:none}
+.dlb{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--grad);color:#fff;padding:15px 24px;border-radius:10px;border:none;font-size:.95rem;font-weight:700;width:100%;cursor:pointer;box-shadow:0 4px 20px rgba(64,112,255,.3);transition:opacity .2s,transform .2s}
+.dlb:hover{opacity:.9;transform:translateY(-1px)}
+.dlb svg{width:17px;height:17px;fill:currentColor;flex-shrink:0}
+.dln{font-size:.78rem;color:#5A6E8A;line-height:1.65}
+.dln b{color:#8899BB}
+.dlf{text-align:center;margin-top:28px;font-size:.88rem;color:#4A5C78}
+.dlf a{color:var(--blue2);font-weight:600}
+
+/* PRICING */
+.pwrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;margin:64px auto 0}
+.pc{background:#131E30;border:1px solid #1E2D42;border-radius:var(--r3);padding:36px;position:relative;transition:border-color .3s}
+.pc:hover{border-color:rgba(64,112,255,.3)}
+.pc.hot{border-color:transparent;background:transparent}
+.pc.hot::before{content:'';position:absolute;inset:0;border-radius:var(--r3);background:var(--grad);z-index:0}
+.pc.hot::after{content:'';position:absolute;inset:2px;border-radius:calc(var(--r3) - 1px);background:#101A2C;z-index:0}
+.pc.hot>*{position:relative;z-index:1}
+.ppill{display:inline-block;background:var(--grad);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:20px}
+.pn{font-size:1.05rem;font-weight:700;color:#F0F4FF;margin-bottom:8px}
+.pd{font-size:.85rem;color:#8899BB;line-height:1.6;margin-bottom:24px}
+.pamt{font-size:3.2rem;font-weight:900;color:#F0F4FF;letter-spacing:-.04em;line-height:1;margin-bottom:4px}
+.pamt sup{font-size:1.3rem;vertical-align:top;margin-top:.6rem;font-weight:700}
+.pper{font-size:.82rem;color:#4A5C78;margin-bottom:28px}
+.pbtn{display:block;width:100%;padding:13px;border-radius:10px;border:none;font-family:var(--font);font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;transition:all .2s}
+.pbtn.s{background:var(--grad);color:#fff;box-shadow:0 4px 16px rgba(64,112,255,.3)}
+.pbtn.s:hover{opacity:.9;transform:translateY(-1px)}
+.pbtn.o{background:transparent;color:#8899BB;border:1px solid #1E2D42}
+.pbtn.o:hover{border-color:var(--border2);color:#F0F4FF}
+.pdiv{height:1px;background:var(--border);margin:24px 0}
+.pfl{list-style:none;display:flex;flex-direction:column;gap:11px}
+.pfi{display:flex;align-items:flex-start;gap:10px;font-size:.88rem;color:#8899BB}
+.pck{color:var(--green);flex-shrink:0;margin-top:1px}
+.pcx{color:#4A5C78;flex-shrink:0;margin-top:1px}
+.pcx~span{color:#4A5C78}
+.pft{text-align:center;margin-top:20px;font-size:.78rem;color:#4A5C78}
+
+/* FAQ */
+#faq{background:#0B1220;border-top:1px solid #1E2D42}
+.fw{max-width:740px;margin:64px auto 0}
+.fi{border-bottom:1px solid #1E2D42}
+.fq{width:100%;background:none;border:none;padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:var(--font);font-size:.97rem;font-weight:600;color:#8899BB;text-align:left;cursor:pointer;transition:color .2s}
+.fq:hover,.fi.open .fq{color:#F0F4FF}
+.fico{width:28px;height:28px;border-radius:50%;background:#131E30;border:1px solid #1E2D42;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#4A5C78;flex-shrink:0;transition:transform .3s,background .2s,color .2s}
+.fi.open .fico{transform:rotate(45deg);background:rgba(0,196,176,.12);border-color:rgba(0,196,176,.25);color:var(--teal)}
+.fa{max-height:0;overflow:hidden;transition:max-height .38s ease}
+.fi.open .fa{max-height:400px}
+.fai{padding-bottom:22px;font-size:.92rem;color:#7A8BAA;line-height:1.78}
+
+/* FOOTER */
+footer{border-top:1px solid #1E2D42;padding:72px 0 0;background:#060A12}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.fbl .logo{margin-bottom:14px}
+.ftag{font-size:.87rem;color:#5A6E8A;line-height:1.7;max-width:230px;margin-bottom:20px}
+.fpub{font-size:.75rem;color:#4A5C78}
+.fcol h4{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#4A5C78;margin-bottom:16px}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fcol a,.fcol button{font-size:.88rem;color:#5A6E8A;transition:color .15s;background:none;border:none;padding:0;text-align:left;cursor:pointer;font-family:var(--font)}
+.fcol a:hover,.fcol button:hover{color:#F0F4FF}
+.fbot{border-top:1px solid #1E2D42;padding:22px 0;margin-top:56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.fcp{font-size:.8rem;color:#4A5C78}
+.fver{font-family:var(--mono);font-size:.75rem;color:#4A5C78;background:#131E30;border:1px solid #1E2D42;padding:4px 12px;border-radius:999px}
+
+/* MODALS */
+.ov{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:flex;align-items:flex-start;justify-content:center;padding:48px 20px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .25s}
+.ov.open{opacity:1;pointer-events:all}
+.modal{background:#101A2C;border:1px solid #1E2D42;border-radius:var(--r3);padding:48px;max-width:700px;width:100%;margin:auto;position:relative;box-shadow:0 40px 100px rgba(0,0,0,.7)}
+.mcl{position:absolute;top:20px;right:20px;background:#131E30;border:1px solid #1E2D42;color:#4A5C78;width:34px;height:34px;border-radius:50%;font-size:1.05rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.mcl:hover{color:#F0F4FF;border-color:var(--border2)}
+.modal h2{font-size:1.5rem;font-weight:800;color:#F0F4FF;letter-spacing:-.02em;margin-bottom:6px}
+.msub{font-size:.85rem;color:#4A5C78;margin-bottom:32px}
+.legal{font-size:.88rem;color:#8899BB;line-height:1.8}
+.legal h3{font-size:.97rem;font-weight:700;color:#F0F4FF;margin:22px 0 8px}
+.legal h3:first-child{margin-top:0}
+.legal p{margin-bottom:12px}
+.legal a{color:var(--blue2);text-decoration:underline;text-underline-offset:2px}
+.legal ul{padding-left:20px;margin-bottom:12px}
+.legal li{margin-bottom:5px}
+.lbox{background:rgba(0,196,176,.06);border:1px solid rgba(0,196,176,.2);border-radius:10px;padding:14px 18px;margin:14px 0;font-size:.85rem;color:#8899BB}
+
+/* COOKIE */
+.ck-bar{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:8888;background:#101A2C;border:1px solid #1E2D42;border-radius:var(--r2);padding:16px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 16px 48px rgba(0,0,0,.5);max-width:680px;width:calc(100% - 40px);animation:su .4s ease}
+.ck-bar.gone{display:none}
+@keyframes su{from{opacity:0;transform:translateX(-50%) translateY(16px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.ck-t{font-size:.82rem;color:#8899BB;line-height:1.5;flex:1}
+.ck-t button{background:none;border:none;cursor:pointer;color:var(--blue2);text-decoration:underline;font-size:inherit;font-family:inherit;padding:0}
+.ck-ok{background:var(--grad);color:#fff;border:none;padding:9px 20px;border-radius:8px;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:opacity .2s}
+.ck-ok:hover{opacity:.87}
+
+/* REVEAL */
+.r{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.r.in{opacity:1;transform:none}
+.r1{transition-delay:.1s}.r2{transition-delay:.2s}.r3{transition-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-in,.ps,.fg{grid-template-columns:1fr}
+  .bento .bc1,.bento .bc2,.bento .bc3,.bento .bc4,.bento .bc5,.bento .bc6,.bento .bc7{grid-column:1/-1}
+  .mscene{display:none}
+  .dlg,.pwrap,.how-g{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hero h1{font-size:2.4rem}
+  .hero-btns{flex-direction:column}
+  section{padding:80px 0}
+  .modal{padding:28px 20px}
+  .fg{grid-template-columns:1fr}
+  .ck-bar{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+<script>
+const V={v:"3.3.0",date:"Juli 2026",dlMac:"#",dlWin:"downloads/finFlow-Setup-3_3_0.exe",cl:"CHANGELOG.md",mail:"hallo@flowstudios.de",pubName:"Florian Haußmann",pubStreet:"Musterstra\u00dfe 1",pubCity:"70000 Stuttgart",ust:"Gem\u00e4\u00df \u00a719 UStG wird keine Umsatzsteuer ausgewiesen."};
+</script>
+
+<nav class="nav" id="nav">
+  <div class="nav-i">
+    <a href="#" class="logo" aria-label="finFlow"><div class="logo-mark">ff</div><div class="logo-text">fin<b>Flow</b></div></a>
+    <ul class="nav-links">
+      <li><a href="#features">Funktionen</a></li>
+      <li><a href="#product">Produkt</a></li>
+      <li><a href="#download">Download</a></li>
+      <li><a href="#pricing">Preise</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#download" class="nav-pill">Kostenlos testen</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+<section class="hero" aria-label="Hero">
+  <div class="orb o1" aria-hidden="true"></div><div class="orb o2" aria-hidden="true"></div><div class="orb o3" aria-hidden="true"></div>
+  <div class="hgrid" aria-hidden="true"></div>
+  <div class="hero-in c" style="padding-left:32px;padding-right:32px;max-width:var(--max);margin:0 auto;position:relative;z-index:1;width:100%">
+    <div>
+      <div class="hero-badge"><span class="pulse"></span>Version <span class="hv"></span> &mdash; Stable</div>
+      <h1>Buchhaltung,<br>die dir<br><span class="gt">geh&ouml;rt.</span></h1>
+      <p class="hero-sub">Rechnungen, Angebote, Mahnwesen und E&Uuml;R-Export &mdash; vollst&auml;ndig lokal auf deinem Rechner. Keine Cloud. Kein Abo. Keine Datenweitergabe.</p>
+      <div class="hero-btns">
+        <a href="#download" class="btn btn-main"><svg viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M7 11l5 5 5-5M12 4v12"/></svg>Kostenlos testen</a>
+        <a href="#features" class="btn btn-out">Alle Funktionen &rarr;</a>
+      </div>
+      <div class="ht-row"><span class="ht">Lokal &amp; offline</span><span class="ht">DSGVO-konform</span><span class="ht">Mac &amp; Windows</span><span class="ht">Kein Abo</span></div>
+    </div>
+    <div class="mscene" id="ms">
+      <div class="mcard" id="mc">
+        <div class="mbar"><span class="mdot" style="background:#FF5F57"></span><span class="mdot" style="background:#FFBD2E"></span><span class="mdot" style="background:#28C840"></span><span class="mtitle">finFlow &mdash; Dashboard</span></div>
+        <div class="mbody">
+          <div class="msb"><div class="mslogo">fin<b>Flow</b></div><div class="msnav a">Dashboard</div><div class="msnav">Kunden</div><div class="msnav">Rechnungen</div><div class="msnav">Angebote</div><div class="msnav">Mahnwesen</div><div class="msnav">E&Uuml;R-Export</div><div class="msnav">Einstellungen</div></div>
+          <div>
+            <div class="mkpis">
+              <div class="mkpi"><div class="mkl">Offen</div><div class="mkv tc">2.430 &euro;</div><div class="mks">4 Rechnungen</div></div>
+              <div class="mkpi"><div class="mkl">&Uuml;berf&auml;llig</div><div class="mkv rc">480 &euro;</div><div class="mks">1 Rechnung</div></div>
+              <div class="mkpi"><div class="mkl">Umsatz 2026</div><div class="mkv">11.840 &euro;</div><div class="mks">gesamt</div></div>
+            </div>
+            <div class="mlist">
+              <div class="mlh"><span>Nummer</span><span>Kunde</span><span>Betrag</span><span>Status</span></div>
+              <div class="mlr"><span>RE-2026-0012</span><span>Maier Design</span><span>840 &euro;</span><span><span class="bdg bo">offen</span></span></div>
+              <div class="mlr"><span>RE-2026-0011</span><span>K&ouml;nig &amp; Co.</span><span>1.590 &euro;</span><span><span class="bdg bp">bezahlt</span></span></div>
+              <div class="mlr"><span>RE-2026-0010</span><span>Weber GmbH</span><span>480 &euro;</span><span><span class="bdg br">&uuml;berf&auml;llig</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ttrack">
+    <span class="titem"><span class="tdot"></span>RE-2026-0042 erstellt<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span><b>840,00 &euro;</b> verbucht<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>AN-2026-0018 &rarr; Rechnung umgewandelt<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>E&Uuml;R 2025 exportiert<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>1. Mahnung RE-2026-0009<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>Backup erstellt<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>Lieferschein LS-2026-0042<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>Neuer Kunde angelegt<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>RE-2026-0042 erstellt<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span><b>840,00 &euro;</b> verbucht<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>AN-2026-0018 &rarr; Rechnung umgewandelt<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>E&Uuml;R 2025 exportiert<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>1. Mahnung RE-2026-0009<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>Backup erstellt<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>Lieferschein LS-2026-0042<span class="tsep">/</span></span>
+    <span class="titem"><span class="tdot"></span>Neuer Kunde angelegt<span class="tsep">/</span></span>
+  </div>
+</div>
+
+<section id="features">
+  <div class="c">
+    <div class="sh r"><div class="etag tc">Funktionen</div><h2>Alles f&uuml;r deinen<br><span class="gt">B&uuml;roalltag</span></h2><p class="ssub">Von der ersten Anfrage bis zum Jahresabschluss &mdash; finFlow begleitet dich durch alle buchhalterischen Aufgaben.</p></div>
+    <div class="bento r">
+      <div class="bc bc1"><div class="bcn">01</div><div class="bc1lay"><div><div class="bcico">&#128202;</div><h3>Dashboard</h3><p>Offene Rechnungen, &uuml;berf&auml;llige Zahlungen und Jahresumsatz. Alle wichtigen Aktionen direkt erreichbar.</p></div><div class="bc1mini"><div class="mf-row"><span class="mf-l">Offen</span><span class="mf-t">2.430 &euro;</span></div><div class="mf-row"><span class="mf-l">&Uuml;berf&auml;llig</span><span class="mf-r">480 &euro;</span></div><div class="mf-row"><span class="mf-l">Umsatz</span><span class="mf-w">11.840 &euro;</span></div></div></div></div>
+      <div class="bc bc2"><div class="bcn">02</div><div class="bcico">&#129534;</div><h3>Rechnungen &amp; Lieferscheine</h3><p>Professionelle PDFs mit eigenem Logo. Positionsrabatte, direkter E-Mail-Versand, automatische Nummernvergabe.</p></div>
+      <div class="bc bc3"><div class="bcn">03</div><div class="bcico">&#128203;</div><h3>Angebote</h3><p>Mit einem Klick vom Angebot zur Rechnung. Status-Tracking und konfigurierbare E-Mail-Vorlagen.</p></div>
+      <div class="bc bc4"><div class="bcn">04</div><div class="bcico">&#9888;&#65039;</div><h3>Mahnwesen</h3><p>&Uuml;berf&auml;llige Rechnungen automatisch erkannt. 1. und 2. Mahnung als PDF &mdash; mit Mahngeb&uuml;hr.</p></div>
+      <div class="bc bc5"><div class="bcn">05</div><div class="bcico">&#128200;</div><h3>E&Uuml;R-Export</h3><p>Einnahmen-&Uuml;berschuss-Rechnung als Excel und druckfertiges PDF. Einnahmen, Ausgaben, Kategorien.</p></div>
+      <div class="bc bc6"><div class="bcn">06</div><div class="bcico">&#128274;</div><h3>Datensicherung &amp; Plattformwechsel</h3><p>Backups per Klick. Nahtloser Wechsel zwischen Mac und Windows &mdash; alle Pfade automatisch angepasst.</p></div>
+      <div class="bc bc7" style="background:linear-gradient(135deg,var(--s1),var(--s2))"><div class="bcn">07</div><div class="bcico" style="background:rgba(0,196,176,.1);border-color:rgba(0,196,176,.25)">&#127769;</div><h3>Dunkelmodus &amp; Logo</h3><p>Vollst&auml;ndig dunkles Theme. Eigenes Logo importierbar &mdash; erscheint automatisch auf allen PDFs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="c">
+    <div class="sh r"><div class="etag bc">So einfach</div><h2>In drei Schritten<br><span class="gt">startklar</span></h2><p class="ssub">finFlow ist f&uuml;r Menschen gebaut, die Geld verdienen wollen &mdash; nicht f&uuml;r das Bedienen von Software.</p></div>
+    <div class="how-g">
+      <div class="how-s r"><span class="stepn">SCHRITT 01</span><h3>Herunterladen &amp; starten</h3><p>Installer &ouml;ffnen, fertig. Kein Account, keine E-Mail-Best&auml;tigung. Nach 30 Sekunden ist finFlow einsatzbereit.</p><span class="sarr">&rarr;</span></div>
+      <div class="how-s r r1"><span class="stepn">SCHRITT 02</span><h3>Firmendaten einrichten</h3><p>Logo, Name, Adresse, Bankverbindung einmalig hinterlegen &mdash; erscheint dann auf allen Rechnungen, Angeboten und Mahnungen.</p><span class="sarr">&rarr;</span></div>
+      <div class="how-s r r2"><span class="stepn">SCHRITT 03</span><h3>Erste Rechnung erstellen</h3><p>Kunde anlegen, Positionen eintragen, PDF erzeugen, per E-Mail versenden. finFlow erinnert dich bei &Uuml;berf&auml;lligkeit.</p><span class="sarr">&#10003;</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="product">
+  <div class="c">
+    <div class="ps">
+      <div class="inv-prev r">
+        <div class="ibar"><span class="mdot" style="background:#FF5F57"></span><span class="mdot" style="background:#FFBD2E"></span><span class="mdot" style="background:#28C840"></span><span class="ibt">Rechnungs&uuml;bersicht</span></div>
+        <div class="ibody">
+          <div class="itabs"><div class="itab">Alle</div><div class="itab a">Offen</div><div class="itab">Bezahlt</div><div class="itab">&Uuml;berf&auml;llig</div></div>
+          <div class="irow"><div class="irt"><div><div class="irn">RE-2026-0012</div><div class="irna">Maier Design Studio</div><div class="irdt">01.07.2026 &middot; f&auml;llig 15.07.2026</div></div><div style="text-align:right"><div class="iram">840,00 &euro;</div><span class="irs sp">offen</span></div></div></div>
+          <div class="irow"><div class="irt"><div><div class="irn">RE-2026-0011</div><div class="irna">K&ouml;nig &amp; Co. GmbH</div><div class="irdt">15.06.2026 &middot; f&auml;llig 29.06.2026</div></div><div style="text-align:right"><div class="iram">1.590,00 &euro;</div><span class="irs pp">bezahlt</span></div></div></div>
+          <div class="irow"><div class="irt"><div><div class="irn">RE-2026-0010</div><div class="irna">Weber Architektur</div><div class="irdt">01.06.2026 &middot; f&auml;llig 15.06.2026</div></div><div style="text-align:right"><div class="iram">480,00 &euro;</div><span class="irs lp">&uuml;berf&auml;llig</span></div></div></div>
+        </div>
+      </div>
+      <div class="ptxt r r1">
+        <div class="etag tc">Das Produkt</div>
+        <h2>Deine Daten,<br><span class="gt">dein Ger&auml;t</span></h2>
+        <p class="ssub" style="margin-bottom:36px">finFlow l&auml;uft vollst&auml;ndig lokal. Keine Anmeldung, keine monatlichen Kosten, keine Datenweitergabe. Deine Kundendaten geh&ouml;ren ausschlie&szlig;lich dir.</p>
+        <div class="cl">
+          <div class="ck"><div class="ckm">&#10003;</div><div class="ckt"><h4>100 % offline</h4><p>finFlow funktioniert ohne Internetverbindung. Alle Daten liegen auf deinem Ger&auml;t.</p></div></div>
+          <div class="ck"><div class="ckm">&#10003;</div><div class="ckt"><h4>Mac &amp; Windows</h4><p>Ein Lizenzschl&uuml;ssel, beide Plattformen. Wechsel jederzeit per Datensicherung.</p></div></div>
+          <div class="ck"><div class="ckm">&#10003;</div><div class="ckt"><h4>Professionelle PDFs</h4><p>Rechnungen, Angebote, Mahnungen und Lieferscheine mit deinem Logo.</p></div></div>
+          <div class="ck"><div class="ckm">&#10003;</div><div class="ckt"><h4>Einmalig zahlen</h4><p>Kein Abo. finFlow wird einmal gekauft und dauerhaft genutzt.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="download">
+  <div class="c">
+    <div class="sh r"><div class="etag bc">Download</div><h2>F&uuml;r <span class="gt">Mac und Windows</span></h2><p class="ssub">Kostenlos testen. F&uuml;r den dauerhaften Einsatz wird ein Lizenzschl&uuml;ssel ben&ouml;tigt.</p></div>
+    <div class="vstrip r"><span class="vsl">Aktuelle stabile Version:</span><strong class="vsv dvv"></strong><span class="vsd dvd"></span><a href="#" class="vsa cl-link">Changelog</a></div>
+    <div class="dlg">
+      <div class="dlc r"><div class="dlch"><div class="dlci">&#127822;</div><div><div class="dlcn">macOS</div><div class="dlcr">macOS 11 Big Sur oder neuer &middot; Apple Silicon &amp; Intel</div></div></div><div class="vtag"><svg viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="dvt"></span></div><a href="#" id="dlm" class="dlb" download><svg viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M7 11l5 5 5-5M12 4v12"/></svg>finFlow f&uuml;r macOS laden (.dmg)</a><div class="dln"><b>Installation:</b> DMG &ouml;ffnen &rarr; finFlow in Programme ziehen.<br><b>Erster Start:</b> Rechtsklick &rarr; &bdquo;&Ouml;ffnen&ldquo; &rarr; erneut &bdquo;&Ouml;ffnen&ldquo;. Einmalig n&ouml;tig.</div></div>
+      <div class="dlc r r1"><div class="dlch"><div class="dlci">&#129711;</div><div><div class="dlcn">Windows</div><div class="dlcr">Windows 10 / 11 &middot; 64-Bit</div></div></div><div class="vtag"><svg viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="dvt"></span></div><a href="#" id="dlw" class="dlb" download><svg viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M7 11l5 5 5-5M12 4v12"/></svg>finFlow f&uuml;r Windows laden (.exe)</a><div class="dln"><b>Installation:</b> Installer starten, Anweisungen folgen.<br><b>SmartScreen:</b> &bdquo;Weitere Informationen&ldquo; &rarr; &bdquo;Trotzdem ausf&uuml;hren&ldquo;. Einmalig n&ouml;tig.</div></div>
+    </div>
+    <div class="dlf r">Versionshistorie: <a href="#" class="cl-link">Changelog ansehen &rarr;</a></div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="c">
+    <div class="sh r"><div class="etag tc">Preise</div><h2>Einmal zahlen,<br><span class="gt">f&uuml;r immer nutzen</span></h2><p class="ssub">Kein Abo. Kein versteckter Haken. finFlow wird einmal gekauft und dauerhaft genutzt.</p></div>
+    <div class="pwrap">
+      <div class="pc r"><div class="pn">Testen</div><div class="pd">Lerne finFlow kennen &mdash; alle Funktionen, kein Zeitlimit.</div><div class="pamt"><sup>&euro;</sup>0</div><div class="pper">kostenlos &middot; ohne Zeitlimit</div><a href="#download" class="pbtn o">Kostenlos herunterladen</a><div class="pdiv"></div><ul class="pfl"><li class="pfi"><span class="pck">&#10003;</span><span>Download f&uuml;r Mac &amp; Windows</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Alle Funktionen testbar</span></li><li class="pfi"><span class="pcx">&middot;</span><span>Lizenzschl&uuml;ssel nach Kauf per E-Mail</span></li></ul></div>
+      <div class="pc hot r r1"><div class="ppill">Beliebt</div><div class="pn">Einzellizenz</div><div class="pd">Ein Schl&uuml;ssel f&uuml;r Mac und Windows. Updates f&uuml;r 12 Monate.</div><div class="pamt"><sup>&euro;</sup>29</div><div class="pper">einmalig &middot; inkl. 12 Monate Updates</div><a href="#" id="buybtn" class="pbtn s">Jetzt kaufen</a><div class="pdiv"></div><ul class="pfl"><li class="pfi"><span class="pck">&#10003;</span><span>Mac &amp; Windows mit einem Schl&uuml;ssel</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Unbegrenzte Rechnungen, Kunden, Angebote</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Alle Updates f&uuml;r 12 Monate</span></li><li class="pfi"><span class="pck">&#10003;</span><span>E&Uuml;R-Export, Mahnwesen, Lieferscheine</span></li><li class="pfi"><span class="pck">&#10003;</span><span>E-Mail-Support</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Kein Abo &mdash; einmalige Zahlung</span></li></ul></div>
+    </div>
+    <p class="pft r" id="pust"></p>
+    <p style="text-align:center;margin-top:10px;font-size:.78rem;color:var(--t3)" class="r">Kauf per E-Mail &mdash; Schl&uuml;ssel wird innerhalb von 24 Stunden zugesandt.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="c">
+    <div class="sh r"><div class="etag bc">FAQ</div><h2><span class="gt">H&auml;ufige Fragen</span></h2></div>
+    <div class="fw" id="faqlist"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="c">
+    <div class="fg">
+      <div class="fbl"><a href="#" class="logo"><div class="logo-mark">ff</div><div class="logo-text">fin<b>Flow</b></div></a><p class="ftag">Lokale Buchhaltungssoftware f&uuml;r Kleingewerbe und Freiberufler.</p><p class="fpub">Ein Produkt von <span id="fpub"></span> &middot; FlowStudios</p></div>
+      <div class="fcol"><h4>Produkt</h4><ul><li><a href="#features">Funktionen</a></li><li><a href="#download">Download</a></li><li><a href="#pricing">Preise</a></li><li><a href="#" class="cl-link">Changelog</a></li></ul></div>
+      <div class="fcol"><h4>Support</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#" id="fmail">E-Mail schreiben</a></li></ul></div>
+      <div class="fcol"><h4>Rechtliches</h4><ul><li><button onclick="om('ovi')">Impressum</button></li><li><button onclick="om('ovd')">Datenschutz</button></li><li><button onclick="om('ova')">AGB</button></li><li><button onclick="om('ovw')">Widerruf</button></li></ul></div>
+    </div>
+    <div class="fbot"><span class="fcp" id="fcp"></span><span class="fver" id="fver"></span></div>
+  </div>
+</footer>
+
+<div class="ov" id="ovi"><div class="modal"><button class="mcl" onclick="cm('ovi')">&#10005;</button><h2>Impressum</h2><p class="msub">Angaben gem&auml;&szlig; &sect;5 TMG</p><div class="legal" id="ovi-c"></div></div></div>
+<div class="ov" id="ovd"><div class="modal"><button class="mcl" onclick="cm('ovd')">&#10005;</button><h2>Datenschutzerkl&auml;rung</h2><p class="msub">Gem&auml;&szlig; DSGVO / Art. 13 DSGVO</p><div class="legal" id="ovd-c"></div></div></div>
+<div class="ov" id="ova"><div class="modal"><button class="mcl" onclick="cm('ova')">&#10005;</button><h2>Allgemeine Gesch&auml;ftsbedingungen</h2><p class="msub">Stand: <span class="agbd"></span></p><div class="legal" id="ova-c"></div></div></div>
+<div class="ov" id="ovw"><div class="modal"><button class="mcl" onclick="cm('ovw')">&#10005;</button><h2>Widerrufsbelehrung</h2><p class="msub">F&uuml;r digitale Inhalte gem&auml;&szlig; &sect;356 Abs. 5 BGB</p><div class="legal" id="ovw-c"></div></div></div>
+
+<div class="ck-bar" id="ckbar">
+  <div class="ck-t">Diese Website verwendet keine Tracking-Cookies und keine Analyse-Tools. <button onclick="om('ovd')">Datenschutzerkl&auml;rung</button></div>
+  <button class="ck-ok" onclick="document.getElementById('ckbar').classList.add('gone');localStorage.setItem('ff_ck2','1')">OK</button>
+</div>
+
+<script>
+document.querySelectorAll('.hv').forEach(e=>e.textContent=V.v);
+document.querySelectorAll('.dvv').forEach(e=>e.textContent=V.v);
+document.querySelectorAll('.dvd').forEach(e=>e.textContent=V.date);
+document.querySelectorAll('.dvt').forEach(e=>e.textContent='finFlow '+V.v+' \u00b7 Stable');
+document.querySelectorAll('.agbd').forEach(e=>e.textContent=V.date);
+document.getElementById('dlm').href=V.dlMac;
+document.getElementById('dlw').href=V.dlWin;
+document.getElementById('buybtn').href='mailto:'+V.mail+'?subject=finFlow+Lizenz+v'+V.v;
+document.getElementById('fmail').href='mailto:'+V.mail;
+document.getElementById('fpub').textContent=V.pubName;
+document.getElementById('fcp').textContent='\u00a9 '+new Date().getFullYear()+' FlowStudios \u00b7 '+V.pubName;
+document.getElementById('fver').textContent='finFlow '+V.v;
+document.getElementById('pust').textContent=V.ust;
+document.querySelectorAll('.cl-link').forEach(e=>e.href=V.cl);
+if(localStorage.getItem('ff_ck2'))document.getElementById('ckbar').classList.add('gone');
+
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>20),{passive:true});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.1});
+document.querySelectorAll('.r').forEach(el=>io.observe(el));
+
+const sc=document.getElementById('ms'),mc=document.getElementById('mc');
+if(sc&&mc){sc.addEventListener('mousemove',e=>{const r=sc.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;mc.style.transform='perspective(1000px) rotateY('+(x*10)+'deg) rotateX('+(-y*8)+'deg)'});sc.addEventListener('mouseleave',()=>{mc.style.transition='transform .6s ease';mc.style.transform='perspective(1000px) rotateY(-3deg) rotateX(1deg)';setTimeout(()=>mc.style.transition='',600)})}
+
+function om(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden'}
+function cm(id){document.getElementById(id).classList.remove('open');document.body.style.overflow=''}
+document.querySelectorAll('.ov').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)cm(m.id)})});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.ov.open').forEach(m=>cm(m.id))});
+
+[{q:'F\u00fcr wen ist finFlow geeignet?',a:'finFlow richtet sich an Kleingewerbetreibende und Freiberufler in Deutschland, die unter der Kleinunternehmerregelung (\u00a719 UStG) arbeiten und keine Umsatzsteuer ausweisen. Typische Nutzer: Handwerker, Kreative, Berater, Onlineshop-Betreiber, Dienstleister.'},{q:'Wo werden meine Daten gespeichert?',a:'Ausschlie\u00dflich lokal auf deinem Rechner. macOS: ~/Library/Application Support/finFlow, Windows: %AppData%/finFlow. Keine Cloud, kein Server, keine Datenweitergabe. finFlow funktioniert vollst\u00e4ndig offline.'},{q:'Kann ich zwischen Mac und Windows wechseln?',a:'Ja. Die Datensicherung erstellt eine plattform\u00fcbergreifende ZIP-Datei. Beim Wiederherstellen auf einem anderen System werden alle Pfade automatisch angepasst \u2014 nahtlos, ohne manuelle Nacharbeit.'},{q:'Muss ich monatlich zahlen?',a:'Nein. finFlow kostet einmalig 29 \u20ac. Daf\u00fcr erh\u00e4ltst du alle Updates f\u00fcr 12 Monate. Danach kannst du die installierte Version dauerhaft und ohne Einschr\u00e4nkung weiter nutzen.'},{q:'Kann ich finFlow vor dem Kauf testen?',a:'Ja. Du kannst finFlow kostenlos herunterladen und mit vollem Funktionsumfang testen \u2014 ohne Zeitlimit. F\u00fcr den dauerhaften Einsatz ben\u00f6tigst du einen Lizenzschl\u00fcssel.'},{q:'Was enth\u00e4lt der E\u00dcR-Export?',a:'Einnahmen aus Rechnungen, manuelle Betriebseinnahmen, Betriebsausgaben nach Kategorie und Gesamtgewinn \u2014 als Excel und als druckfertiges PDF. Erg\u00e4nzend zur Steuererkl\u00e4rung; ersetzt keine Steuerberatung.'},{q:'Was passiert nach 12 Monaten?',a:'Die installierte Version l\u00e4uft unbegrenzt weiter. F\u00fcr neue Versionen nach den 12 Monaten kann eine Update-Lizenz erworben werden.'},{q:'Wie bekomme ich meinen Lizenzschl\u00fcssel?',a:'Nach dem Kauf erh\u00e4ltst du deinen Lizenzschl\u00fcssel innerhalb von 24 Stunden per E-Mail. Du gibst ihn beim ersten Start von finFlow ein \u2014 er wird dauerhaft gespeichert.'}].forEach(({q,a})=>{const d=document.createElement('div');d.className='fi';d.innerHTML='<button class="fq">'+q+'<span class="fico">+</span></button><div class="fa"><div class="fai">'+a+'</div></div>';d.querySelector('.fq').addEventListener('click',()=>d.classList.toggle('open'));document.getElementById('faqlist').appendChild(d)});
+
+const lbox='<div class="lbox">';
+document.getElementById('ovi-c').innerHTML=lbox+'<strong>Bitte erg\u00e4nze deine echten Kontaktdaten.</strong></div><h3>Verantwortlich</h3><p><strong>'+V.pubName+'</strong><br>FlowStudios<br>'+V.pubStreet+'<br>'+V.pubCity+'</p><h3>Kontakt</h3><p>E-Mail: <a href="mailto:'+V.mail+'">'+V.mail+'</a></p><h3>Umsatzsteuer</h3><p>'+V.ust+'</p><h3>Haftung f\u00fcr Inhalte</h3><p>Als Dienstanbieter sind wir gem\u00e4\u00df \u00a77 Abs.1 TMG f\u00fcr eigene Inhalte nach den allgemeinen Gesetzen verantwortlich.</p><h3>Urheberrecht</h3><p>Die erstellten Inhalte unterliegen dem deutschen Urheberrecht. Vervielf\u00e4ltigung bedarf der schriftlichen Zustimmung.</p>';
+document.getElementById('ovd-c').innerHTML=lbox+'finFlow und diese Website erheben keinerlei Daten \u00fcber Analysetools, Cookies oder Drittdienste.</div><h3>1. Verantwortliche Stelle</h3><p>'+V.pubName+', FlowStudios, '+V.pubStreet+', '+V.pubCity+' \u00b7 <a href="mailto:'+V.mail+'">'+V.mail+'</a></p><h3>2. Datenerhebung</h3><p>Diese Website verwendet keine Tracking-Cookies, keine Analyse-Tools und keine eingebetteten Drittdienste. Beim Seitenaufruf \u00fcbertr\u00e4gt dein Browser technisch bedingt IP-Adresse, Datum/Uhrzeit und aufgerufene URL an den Webserver. Diese Daten werden nicht gespeichert oder ausgewertet.</p><h3>3. Kontakt per E-Mail</h3><p>Daten werden ausschlie\u00dflich zur Bearbeitung deiner Anfrage gespeichert. Rechtsgrundlage: Art. 6 Abs. 1 lit. b oder f DSGVO.</p><h3>4. Software finFlow</h3><p>finFlow selbst verarbeitet ausschlie\u00dflich lokal eingegebene Daten, die auf deinem Ger\u00e4t verbleiben. Als Nutzer bist du gem\u00e4\u00df Art. 4 Nr. 7 DSGVO selbst Verantwortlicher f\u00fcr die Verarbeitung deiner Kundendaten.</p><h3>5. Deine Rechte</h3><p>Auskunft, Berichtigung, L\u00f6schung, Einschr\u00e4nkung, Daten\u00fcbertragbarkeit, Widerspruch (Art. 15\u201321 DSGVO).</p><h3>Stand</h3><p>'+V.date+'</p>';
+document.getElementById('ova-c').innerHTML='<h3>\u00a71 Geltungsbereich</h3><p>Diese AGB gelten f\u00fcr alle Vertr\u00e4ge \u00fcber Lizenzen der Software finFlow zwischen FlowStudios ('+V.pubName+', '+V.pubStreet+', '+V.pubCity+') und K\u00e4ufern.</p><h3>\u00a72 Vertragsschluss</h3><p>Der Kauf erfolgt per E-Mail-Anfrage an <a href="mailto:'+V.mail+'">'+V.mail+'</a>. Der Vertrag kommt mit \u00dcbersendung des Lizenzschl\u00fcssels zustande.</p><h3>\u00a73 Leistungen</h3><p>Die Einzellizenz berechtigt eine Person zur Installation auf einem Ger\u00e4t. Der Schl\u00fcssel gew\u00e4hrt Zugang zu Updates f\u00fcr 12 Monate ab Kaufdatum.</p><h3>\u00a74 Preise</h3><p>Preise in Euro. '+V.ust+'</p><h3>\u00a75 Haftung</h3><p>FlowStudios \u00fcbernimmt keine Gew\u00e4hr f\u00fcr die steuerrechtliche Korrektheit erzeugter Dokumente. Die Software ersetzt keine Steuer- oder Rechtsberatung.</p><h3>\u00a76 Geltendes Recht</h3><p>Deutsches Recht. Gerichtsstand: '+V.pubCity+'.</p>';
+document.getElementById('ovw-c').innerHTML='<h3>Widerrufsrecht</h3><p>Du hast das Recht, binnen 14 Tagen ohne Angabe von Gr\u00fcnden diesen Vertrag zu widerrufen. Widerruf per E-Mail an: <a href="mailto:'+V.mail+'">'+V.mail+'</a></p><h3>Erl\u00f6schen bei digitalen Inhalten</h3>'+lbox+'Das Widerrufsrecht erl\u00f6scht vorzeitig, wenn die Vertragsausf\u00fchrung (Schl\u00fcssel\u00fcbermittlung) begonnen hat und du ausdr\u00fccklich zugestimmt hast, dass damit vor Fristablauf begonnen wird, und du best\u00e4tigt hast, dein Widerrufsrecht zu verlieren (\u00a7356 Abs. 5 BGB). Diese Zustimmung erteilst du durch Anforderung des Schl\u00fcssels per E-Mail.</div><h3>Folgen des Widerrufs</h3><p>Wir erstatten alle Zahlungen unverz\u00fcglich, sp\u00e4testens binnen 14 Tagen ab Eingang deiner Widerrufserkl\u00e4rung.</p>';
+</script>
+</body>
+</html>
