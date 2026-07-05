@@ -310,7 +310,7 @@ footer{border-top:1px solid #1E2D42;padding:72px 0 0;background:#060A12}
 const V={v:"3.3.0",date:"Juli 2026",dlMac:"#",dlWin:"downloads/finFlow-Setup-3_3_0.exe",cl:"CHANGELOG.md",mail:"info@flowstudios.dev",pubName:"Florian Haußmann",pubStreet:"Haldestra\u00dfe 8",pubCity:"72644 Oberboihingen",ust:"Gem\u00e4\u00df \u00a719 UStG wird keine Umsatzsteuer ausgewiesen."};
 
 function ckUpdate(){
-  var all=['ck1','ck2','ck3','ck4'].every(function(id){return document.getElementById(id).checked});
+  var all=['ck1','ck2','ck3','ck4','ck5'].every(function(id){return document.getElementById(id).checked});
   var btn=document.getElementById('ck-buy-btn');
   if(all){
     btn.disabled=false;btn.style.cursor='pointer';
@@ -322,9 +322,41 @@ function ckUpdate(){
   }
 }
 function ckProceed(){
-  var all=['ck1','ck2','ck3','ck4'].every(function(id){return document.getElementById(id).checked});
+  var all=['ck1','ck2','ck3','ck4','ck5'].every(function(id){return document.getElementById(id).checked});
   if(all){cm('ock');window.open(window._stripeUrl,'_blank');}
 }
+
+
+document.getElementById('oveula-c').innerHTML=
+'<h3>1. Lizenzgewährung</h3>' +
+'<p>FlowStudios (Florian Haußmann) gewährt dir eine nicht-exklusive, nicht-übertragbare Einzelplatzlizenz zur Installation und Nutzung der Software finFlow auf einem Gerät unter macOS oder Windows. Ein Lizenzschlüssel berechtigt zur Nutzung auf einem Mac und einem Windows-PC desselben Lizenznehmers.</p>' +
+
+'<h3>2. Einschränkungen</h3>' +
+'<p>Es ist nicht gestattet: (a) die Software zu vervielfältigen, zu vermieten, zu verleihen, zu verkaufen oder anderweitig Dritten zu überlassen; (b) die Software zu dekompilieren, zu disassemblieren oder zu reverse-engineeren, soweit dies gesetzlich nicht ausdrücklich erlaubt ist; (c) den Lizenzschlüssel an Dritte weiterzugeben; (d) die Software für illegale Zwecke zu nutzen.</p>' +
+
+'<h3>3. Updates</h3>' +
+'<p>Der Lizenzschlüssel gewährt Zugang zu allen Updates der aktuellen Hauptversion (z.B. 3.x) für 12 Monate ab Kaufdatum. Eine neue Hauptversion (z.B. 4.x) stellt ein eigenständiges Upgrade dar und erfordert eine separate Lizenz.</p>' +
+
+'<h3>4. Eigentum</h3>' +
+'<p>Die Software und alle Rechte daran verbleiben ausschließlich bei FlowStudios (Florian Haußmann). Diese Lizenz überträgt keine Eigentumsrechte an der Software.</p>' +
+
+'<h3>5. Datenschutz</h3>' +
+'<p>Die Software verarbeitet ausschließlich lokal auf deinem Gerät gespeicherte Daten. Es werden keine Daten an FlowStudios oder Dritte übertragen. Als Nutzer bist du für die datenschutzkonforme Verarbeitung deiner Kundendaten selbst verantwortlich.</p>' +
+
+'<h3>6. Gewährleistungsausschluss</h3>' +
+'<p>Die Software wird "wie besehen" bereitgestellt. FlowStudios übernimmt keine Gewähr für die Fehlerfreiheit oder ununterbrochene Verfügbarkeit der Software. Die Haftung für einfache Fahrlässigkeit ist, soweit gesetzlich zulässig, ausgeschlossen. Dies gilt nicht für Schäden aus der Verletzung von Leben, Körper oder Gesundheit sowie bei grober Fahrlässigkeit oder Vorsatz.</p>' +
+
+'<h3>7. Steuerliche Hinweise</h3>' +
+'<p>finFlow unterstützt dich bei der Erstellung von Belegen und Auswertungen, ersetzt jedoch keine Steuer- oder Rechtsberatung. Für die steuerrechtliche Korrektheit deiner Dokumente und Auswertungen bist du als Nutzer selbst verantwortlich.</p>' +
+
+'<h3>8. Kündigung</h3>' +
+'<p>Diese Lizenz gilt auf unbestimmte Zeit. Sie erlischt automatisch, wenn du gegen diese Vereinbarung verstößt. Bei Erlöschen bist du verpflichtet, alle Kopien der Software zu löschen.</p>' +
+
+'<h3>9. Anwendbares Recht</h3>' +
+'<p>Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts. Gerichtsstand ist, soweit gesetzlich zulässig, 72644 Oberboihingen.</p>' +
+
+'<h3>10. Kontakt</h3>' +
+'<p>FlowStudios · Florian Haußmann · Haldenstraße 8 · 72644 Oberboihingen · <a href="mailto:info@flowstudios.dev">info@flowstudios.dev</a></p>';
 
 </script>
 
@@ -472,7 +504,7 @@ function ckProceed(){
     <div class="sh r"><div class="etag tc">Preise</div><h2>Einmal zahlen,<br><span class="gt">dauerhaft nutzen</span></h2><p class="ssub">Kein Abo. Kein versteckter Haken. finFlow wird einmal gekauft und l&auml;uft dauerhaft &mdash; alle Updates der aktuellen Version (3.x) sind f&uuml;r 12 Monate inklusive.</p></div>
     <div class="pwrap">
       <div class="pc r"><div class="pn">Testen</div><div class="pd">Lerne finFlow kennen &mdash; mit eingeschr&auml;nktem Funktionsumfang, ohne Zeitlimit.</div><div class="pamt"><sup>&euro;</sup>0</div><div class="pper">kostenlos &middot; ohne Zeitlimit</div><a href="#download" class="pbtn o">Kostenlos herunterladen</a><div class="pdiv"></div><ul class="pfl"><li class="pfi"><span class="pck">&#10003;</span><span>Download f&uuml;r Mac &amp; Windows</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Bis zu 5 Rechnungen &amp; 3 Angebote</span></li><li class="pfi"><span class="pcx">&middot;</span><span>PDFs mit Wasserzeichen</span></li><li class="pfi"><span class="pcx">&middot;</span><span>Mahnwesen, E&Uuml;R &amp; Datensicherung nur in Vollversion</span></li></ul></div>
-      <div class="pc hot r r1"><div class="ppill">Beliebt</div><div class="pn">Einzellizenz</div><div class="pd">Ein Schl&uuml;ssel f&uuml;r Mac und Windows. Updates f&uuml;r 12 Monate.</div><div class="pamt"><sup>&euro;</sup>69</div><div class="pper">einmalig &middot; Version 3.x dauerhaft nutzbar</div><a href="#" id="buybtn" class="pbtn s">Jetzt kaufen – 69 €</a><div class="pdiv"></div><ul class="pfl"><li class="pfi"><span class="pck">&#10003;</span><span>Mac &amp; Windows mit einem Schl&uuml;ssel</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Unbegrenzte Rechnungen, Kunden, Angebote</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Alle 3.x-Updates f&uuml;r 12 Monate inklusive</span></li><li class="pfi"><span class="pck">&#10003;</span><span>E&Uuml;R-Export, Mahnwesen, Lieferscheine</span></li><li class="pfi"><span class="pck">&#10003;</span><span>E-Mail-Support</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Kein Abo &mdash; einmalige Zahlung</span></li></ul></div>
+      <div class="pc hot r r1"><div class="ppill">Beliebt</div><div class="pn">Einzellizenz</div><div class="pd">Ein Schl&uuml;ssel f&uuml;r Mac und Windows. Updates f&uuml;r 12 Monate.</div><div class="pamt"><sup>&euro;</sup>69</div><div class="pper">einmalig &middot; Version 3.x dauerhaft nutzbar</div><a href="#" id="buybtn" class="pbtn s">Kostenpflichtig bestellen (69 €)</a><div class="pdiv"></div><ul class="pfl"><li class="pfi"><span class="pck">&#10003;</span><span>Mac &amp; Windows mit einem Schl&uuml;ssel</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Unbegrenzte Rechnungen, Kunden, Angebote</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Alle 3.x-Updates f&uuml;r 12 Monate inklusive</span></li><li class="pfi"><span class="pck">&#10003;</span><span>E&Uuml;R-Export, Mahnwesen, Lieferscheine</span></li><li class="pfi"><span class="pck">&#10003;</span><span>E-Mail-Support</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Kein Abo &mdash; einmalige Zahlung</span></li></ul></div>
     </div>
     <p class="pft r" id="pust"></p>
     <p style="text-align:center;margin-top:10px;font-size:.78rem;color:var(--t3)" class="r">Der Lizenzschl&uuml;ssel wird in der Regel innerhalb weniger Stunden nach erfolgreicher Zahlung per E-Mail zugestellt.</p>
@@ -501,6 +533,17 @@ function ckProceed(){
 
 
 <!-- Checkout-Modal -->
+
+<!-- EULA Modal -->
+<div class="ov" id="oveula" role="dialog" aria-modal="true" aria-label="Lizenzvereinbarung">
+  <div class="modal">
+    <button class="mcl" onclick="cm('oveula')" aria-label="Schließen">&#10005;</button>
+    <h2>Endbenutzer-Lizenzvereinbarung (EULA)</h2>
+    <p class="msub">Software finFlow &mdash; FlowStudios &middot; Florian Hau&szlig;mann</p>
+    <div class="legal" id="oveula-c"></div>
+  </div>
+</div>
+
 <div class="ov" id="ock" role="dialog" aria-modal="true" aria-label="Kaufabschluss">
   <div class="modal" style="max-width:520px">
     <button class="mcl" onclick="cm('ock')" aria-label="Schließen">&#10005;</button>
@@ -529,13 +572,18 @@ function ckProceed(){
         <span>Ich verlange ausdr&uuml;cklich, dass die Bereitstellung des Lizenzschl&uuml;ssels sofort beginnt. Mir ist bekannt, dass mein Widerrufsrecht dadurch gem&auml;&szlig; &sect;356 Abs.&nbsp;5 BGB erl&ouml;schen kann.</span>
       </label>
 
+      <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-size:.9rem;color:#8899BB;line-height:1.6">
+        <input type="checkbox" id="ck5" onchange="ckUpdate()" style="margin-top:3px;accent-color:#4070FF;width:16px;height:16px;flex-shrink:0">
+        <span>Ich habe die <button onclick="om('oveula')" style="background:none;border:none;color:#4070FF;cursor:pointer;font-family:inherit;font-size:inherit;text-decoration:underline;padding:0">Lizenzvereinbarung (EULA)</button> gelesen und akzeptiere sie.</span>
+      </label>
+
     </div>
 
     <button id="ck-buy-btn" onclick="ckProceed()" disabled
       style="display:block;width:100%;padding:15px;border-radius:10px;border:none;
              font-family:inherit;font-size:1rem;font-weight:700;cursor:not-allowed;
              background:#1E2D42;color:#4A5C78;transition:all .3s">
-      Jetzt kaufen &ndash; 69 &euro; &#8594;
+      Kostenpflichtig bestellen (69 &euro;) &#8594;
     </button>
     <p style="font-size:.75rem;color:#4A5C78;margin-top:10px;text-align:center">
       Du wirst zu Stripe weitergeleitet. Sichere Zahlung mit Kreditkarte oder SEPA.
@@ -596,7 +644,7 @@ document.getElementById('ova-c').innerHTML='<h3>\u00a71 Geltungsbereich</h3><p>D
 document.getElementById('ovw-c').innerHTML='<h3>Widerrufsrecht</h3><p>Du hast das Recht, binnen 14 Tagen ohne Angabe von Gr\u00fcnden diesen Vertrag zu widerrufen. Widerruf per E-Mail an: <a href="mailto:'+V.mail+'">'+V.mail+'</a></p><h3>Erl\u00f6schen bei digitalen Inhalten</h3>'+lbox+'Das Widerrufsrecht erl\u00f6scht vorzeitig, wenn die Vertragsausf\u00fchrung (Schl\u00fcssel\u00fcbermittlung) begonnen hat und du ausdr\u00fccklich zugestimmt hast, dass damit vor Fristablauf begonnen wird, und du best\u00e4tigt hast, dein Widerrufsrecht zu verlieren (\u00a7356 Abs. 5 BGB). Diese Zustimmung erteilst du mit dem Setzen des Hakens \u201eIch verlange ausdr\u00fccklich, dass die Bereitstellung des Lizenzschl\u00fcssels sofort beginnt. Mir ist bekannt, dass mein Widerrufsrecht dadurch gem\u00e4\u00df \u00a7356 Abs.\u00a05 BGB erl\u00f6schen kann.\u201c beim Kaufvorgang.</div><h3>Folgen des Widerrufs</h3><p>Wir erstatten alle Zahlungen unverz\u00fcglich, sp\u00e4testens binnen 14 Tagen ab Eingang deiner Widerrufserkl\u00e4rung.</p>';
 
 function ckUpdate(){
-  var all=['ck1','ck2','ck3','ck4'].every(function(id){return document.getElementById(id).checked});
+  var all=['ck1','ck2','ck3','ck4','ck5'].every(function(id){return document.getElementById(id).checked});
   var btn=document.getElementById('ck-buy-btn');
   if(all){
     btn.disabled=false;btn.style.cursor='pointer';
@@ -608,9 +656,41 @@ function ckUpdate(){
   }
 }
 function ckProceed(){
-  var all=['ck1','ck2','ck3','ck4'].every(function(id){return document.getElementById(id).checked});
+  var all=['ck1','ck2','ck3','ck4','ck5'].every(function(id){return document.getElementById(id).checked});
   if(all){cm('ock');window.open(window._stripeUrl,'_blank');}
 }
+
+
+document.getElementById('oveula-c').innerHTML=
+'<h3>1. Lizenzgewährung</h3>' +
+'<p>FlowStudios (Florian Haußmann) gewährt dir eine nicht-exklusive, nicht-übertragbare Einzelplatzlizenz zur Installation und Nutzung der Software finFlow auf einem Gerät unter macOS oder Windows. Ein Lizenzschlüssel berechtigt zur Nutzung auf einem Mac und einem Windows-PC desselben Lizenznehmers.</p>' +
+
+'<h3>2. Einschränkungen</h3>' +
+'<p>Es ist nicht gestattet: (a) die Software zu vervielfältigen, zu vermieten, zu verleihen, zu verkaufen oder anderweitig Dritten zu überlassen; (b) die Software zu dekompilieren, zu disassemblieren oder zu reverse-engineeren, soweit dies gesetzlich nicht ausdrücklich erlaubt ist; (c) den Lizenzschlüssel an Dritte weiterzugeben; (d) die Software für illegale Zwecke zu nutzen.</p>' +
+
+'<h3>3. Updates</h3>' +
+'<p>Der Lizenzschlüssel gewährt Zugang zu allen Updates der aktuellen Hauptversion (z.B. 3.x) für 12 Monate ab Kaufdatum. Eine neue Hauptversion (z.B. 4.x) stellt ein eigenständiges Upgrade dar und erfordert eine separate Lizenz.</p>' +
+
+'<h3>4. Eigentum</h3>' +
+'<p>Die Software und alle Rechte daran verbleiben ausschließlich bei FlowStudios (Florian Haußmann). Diese Lizenz überträgt keine Eigentumsrechte an der Software.</p>' +
+
+'<h3>5. Datenschutz</h3>' +
+'<p>Die Software verarbeitet ausschließlich lokal auf deinem Gerät gespeicherte Daten. Es werden keine Daten an FlowStudios oder Dritte übertragen. Als Nutzer bist du für die datenschutzkonforme Verarbeitung deiner Kundendaten selbst verantwortlich.</p>' +
+
+'<h3>6. Gewährleistungsausschluss</h3>' +
+'<p>Die Software wird "wie besehen" bereitgestellt. FlowStudios übernimmt keine Gewähr für die Fehlerfreiheit oder ununterbrochene Verfügbarkeit der Software. Die Haftung für einfache Fahrlässigkeit ist, soweit gesetzlich zulässig, ausgeschlossen. Dies gilt nicht für Schäden aus der Verletzung von Leben, Körper oder Gesundheit sowie bei grober Fahrlässigkeit oder Vorsatz.</p>' +
+
+'<h3>7. Steuerliche Hinweise</h3>' +
+'<p>finFlow unterstützt dich bei der Erstellung von Belegen und Auswertungen, ersetzt jedoch keine Steuer- oder Rechtsberatung. Für die steuerrechtliche Korrektheit deiner Dokumente und Auswertungen bist du als Nutzer selbst verantwortlich.</p>' +
+
+'<h3>8. Kündigung</h3>' +
+'<p>Diese Lizenz gilt auf unbestimmte Zeit. Sie erlischt automatisch, wenn du gegen diese Vereinbarung verstößt. Bei Erlöschen bist du verpflichtet, alle Kopien der Software zu löschen.</p>' +
+
+'<h3>9. Anwendbares Recht</h3>' +
+'<p>Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts. Gerichtsstand ist, soweit gesetzlich zulässig, 72644 Oberboihingen.</p>' +
+
+'<h3>10. Kontakt</h3>' +
+'<p>FlowStudios · Florian Haußmann · Haldenstraße 8 · 72644 Oberboihingen · <a href="mailto:info@flowstudios.dev">info@flowstudios.dev</a></p>';
 
 </script>
 </body>
