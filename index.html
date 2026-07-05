@@ -308,6 +308,24 @@ footer{border-top:1px solid #1E2D42;padding:72px 0 0;background:#060A12}
 <body>
 <script>
 const V={v:"3.3.0",date:"Juli 2026",dlMac:"#",dlWin:"downloads/finFlow-Setup-3_3_0.exe",cl:"CHANGELOG.md",mail:"info@flowstudios.dev",pubName:"Florian Haußmann",pubStreet:"Haldestra\u00dfe 8",pubCity:"72644 Oberboihingen",ust:"Gem\u00e4\u00df \u00a719 UStG wird keine Umsatzsteuer ausgewiesen."};
+
+function ckUpdate(){
+  var all=['ck1','ck2','ck3','ck4'].every(function(id){return document.getElementById(id).checked});
+  var btn=document.getElementById('ck-buy-btn');
+  if(all){
+    btn.disabled=false;btn.style.cursor='pointer';
+    btn.style.background='linear-gradient(135deg,#4070FF,#00C4B0)';
+    btn.style.color='#fff';
+  } else {
+    btn.disabled=true;btn.style.cursor='not-allowed';
+    btn.style.background='#1E2D42';btn.style.color='#4A5C78';
+  }
+}
+function ckProceed(){
+  var all=['ck1','ck2','ck3','ck4'].every(function(id){return document.getElementById(id).checked});
+  if(all){cm('ock');window.open(window._stripeUrl,'_blank');}
+}
+
 </script>
 
 <nav class="nav" id="nav">
@@ -442,8 +460,8 @@ const V={v:"3.3.0",date:"Juli 2026",dlMac:"#",dlWin:"downloads/finFlow-Setup-3_3
     <div class="sh r"><div class="etag bc">Download</div><h2>F&uuml;r <span class="gt">Mac und Windows</span></h2><p class="ssub">Kostenlos testen. F&uuml;r den dauerhaften Einsatz wird ein Lizenzschl&uuml;ssel ben&ouml;tigt.</p></div>
     <div class="vstrip r"><span class="vsl">Aktuelle stabile Version:</span><strong class="vsv dvv"></strong><span class="vsd dvd"></span><a href="#" class="vsa cl-link">Changelog</a></div>
     <div class="dlg">
-      <div class="dlc r"><div class="dlch"><div class="dlci">&#127822;</div><div><div class="dlcn">macOS</div><div class="dlcr">macOS 11 Big Sur oder neuer &middot; Apple Silicon &amp; Intel</div></div></div><div class="vtag"><svg viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="dvt"></span></div><a href="#" id="dlm" class="dlb" download><svg viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M7 11l5 5 5-5M12 4v12"/></svg>finFlow f&uuml;r macOS laden (.dmg)</a><div class="dln"><b>Installation:</b> DMG &ouml;ffnen &rarr; finFlow in Programme ziehen.<br><b>Erster Start:</b> Rechtsklick &rarr; &bdquo;&Ouml;ffnen&ldquo; &rarr; erneut &bdquo;&Ouml;ffnen&ldquo;. Einmalig n&ouml;tig.</div></div>
-      <div class="dlc r r1"><div class="dlch"><div class="dlci">&#129695;</div><div><div class="dlcn">Windows</div><div class="dlcr">Windows 10 / 11 &middot; 64-Bit</div></div></div><div class="vtag"><svg viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="dvt"></span></div><a href="#" id="dlw" class="dlb" download><svg viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M7 11l5 5 5-5M12 4v12"/></svg>finFlow f&uuml;r Windows laden (.exe)</a><div class="dln"><b>Installation:</b> Installer starten, Anweisungen folgen.<br><b>SmartScreen:</b> &bdquo;Weitere Informationen&ldquo; &rarr; &bdquo;Trotzdem ausf&uuml;hren&ldquo;. Einmalig n&ouml;tig.</div></div>
+      <div class="dlc r"><div class="dlch"><div class="dlci">&#127822;</div><div><div class="dlcn">macOS</div><div class="dlcr">macOS 11 Big Sur oder neuer &middot; Apple Silicon &amp; Intel</div></div></div><div class="vtag"><svg viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="dvt"></span></div><a href="#" id="dlm" class="dlb" download><svg viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M7 11l5 5 5-5M12 4v12"/></svg>finFlow f&uuml;r macOS laden (.dmg)</a><div class="dln"><b>Systemvoraussetzungen:</b> macOS 11 Big Sur oder neuer &middot; Apple Silicon &amp; Intel<br><b>Sprache:</b> Deutsch &middot; <b>Gr&ouml;&szlig;e:</b> ca. 30 MB &middot; <b>Modus:</b> vollst&auml;ndig offline<br><b>Installation:</b> DMG &ouml;ffnen &rarr; finFlow in Programme ziehen.<br><b>Erster Start:</b> Rechtsklick &rarr; &bdquo;&Ouml;ffnen&ldquo; &rarr; erneut &bdquo;&Ouml;ffnen&ldquo;. Einmalig n&ouml;tig.</div></div>
+      <div class="dlc r r1"><div class="dlch"><div class="dlci">&#129695;</div><div><div class="dlcn">Windows</div><div class="dlcr">Windows 10 / 11 &middot; 64-Bit</div></div></div><div class="vtag"><svg viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="dvt"></span></div><a href="#" id="dlw" class="dlb" download><svg viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M7 11l5 5 5-5M12 4v12"/></svg>finFlow f&uuml;r Windows laden (.exe)</a><div class="dln"><b>Systemvoraussetzungen:</b> Windows 10 / 11 &middot; 64-Bit<br><b>Sprache:</b> Deutsch &middot; <b>Gr&ouml;&szlig;e:</b> ca. 25 MB &middot; <b>Modus:</b> vollst&auml;ndig offline<br><b>Installation:</b> Installer starten, Anweisungen folgen.<br><b>SmartScreen:</b> &bdquo;Weitere Informationen&ldquo; &rarr; &bdquo;Trotzdem ausf&uuml;hren&ldquo;. Einmalig n&ouml;tig.</div></div>
     </div>
     <div class="dlf r">Versionshistorie: <a href="#" class="cl-link">Changelog ansehen &rarr;</a></div>
   </div>
@@ -457,7 +475,7 @@ const V={v:"3.3.0",date:"Juli 2026",dlMac:"#",dlWin:"downloads/finFlow-Setup-3_3
       <div class="pc hot r r1"><div class="ppill">Beliebt</div><div class="pn">Einzellizenz</div><div class="pd">Ein Schl&uuml;ssel f&uuml;r Mac und Windows. Updates f&uuml;r 12 Monate.</div><div class="pamt"><sup>&euro;</sup>69</div><div class="pper">einmalig &middot; Version 3.x dauerhaft nutzbar</div><a href="#" id="buybtn" class="pbtn s">Jetzt kaufen – 69 €</a><div class="pdiv"></div><ul class="pfl"><li class="pfi"><span class="pck">&#10003;</span><span>Mac &amp; Windows mit einem Schl&uuml;ssel</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Unbegrenzte Rechnungen, Kunden, Angebote</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Alle 3.x-Updates f&uuml;r 12 Monate inklusive</span></li><li class="pfi"><span class="pck">&#10003;</span><span>E&Uuml;R-Export, Mahnwesen, Lieferscheine</span></li><li class="pfi"><span class="pck">&#10003;</span><span>E-Mail-Support</span></li><li class="pfi"><span class="pck">&#10003;</span><span>Kein Abo &mdash; einmalige Zahlung</span></li></ul></div>
     </div>
     <p class="pft r" id="pust"></p>
-    <p style="text-align:center;margin-top:10px;font-size:.78rem;color:var(--t3)" class="r">Kauf per E-Mail &mdash; Schl&uuml;ssel wird innerhalb von 24 Stunden zugesandt.</p>
+    <p style="text-align:center;margin-top:10px;font-size:.78rem;color:var(--t3)" class="r">Der Lizenzschl&uuml;ssel wird in der Regel innerhalb weniger Stunden nach erfolgreicher Zahlung per E-Mail zugestellt.</p>
   </div>
 </section>
 
@@ -481,10 +499,54 @@ const V={v:"3.3.0",date:"Juli 2026",dlMac:"#",dlWin:"downloads/finFlow-Setup-3_3
   </div>
 </footer>
 
+
+<!-- Checkout-Modal -->
+<div class="ov" id="ock" role="dialog" aria-modal="true" aria-label="Kaufabschluss">
+  <div class="modal" style="max-width:520px">
+    <button class="mcl" onclick="cm('ock')" aria-label="Schließen">&#10005;</button>
+    <h2>finFlow kaufen</h2>
+    <p class="msub">Bitte best&auml;tige die folgenden Punkte vor dem Kauf.</p>
+
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px">
+
+      <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-size:.9rem;color:#8899BB;line-height:1.6">
+        <input type="checkbox" id="ck1" onchange="ckUpdate()" style="margin-top:3px;accent-color:#4070FF;width:16px;height:16px;flex-shrink:0">
+        <span>Ich habe die <button onclick="om('ova')" style="background:none;border:none;color:#4070FF;cursor:pointer;font-family:inherit;font-size:inherit;text-decoration:underline;padding:0">AGB</button> gelesen und akzeptiere sie.</span>
+      </label>
+
+      <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-size:.9rem;color:#8899BB;line-height:1.6">
+        <input type="checkbox" id="ck2" onchange="ckUpdate()" style="margin-top:3px;accent-color:#4070FF;width:16px;height:16px;flex-shrink:0">
+        <span>Ich habe die <a href="datenschutz.html" target="_blank" style="color:#4070FF">Datenschutzerkl&auml;rung</a> zur Kenntnis genommen.</span>
+      </label>
+
+      <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-size:.9rem;color:#8899BB;line-height:1.6">
+        <input type="checkbox" id="ck3" onchange="ckUpdate()" style="margin-top:3px;accent-color:#4070FF;width:16px;height:16px;flex-shrink:0">
+        <span>Ich habe die <button onclick="om('ovw')" style="background:none;border:none;color:#4070FF;cursor:pointer;font-family:inherit;font-size:inherit;text-decoration:underline;padding:0">Widerrufsbelehrung</button> gelesen.</span>
+      </label>
+
+      <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-size:.9rem;color:#8899BB;line-height:1.6">
+        <input type="checkbox" id="ck4" onchange="ckUpdate()" style="margin-top:3px;accent-color:#4070FF;width:16px;height:16px;flex-shrink:0">
+        <span>Ich verlange ausdr&uuml;cklich, dass die Bereitstellung des Lizenzschl&uuml;ssels sofort beginnt. Mir ist bekannt, dass mein Widerrufsrecht dadurch gem&auml;&szlig; &sect;356 Abs.&nbsp;5 BGB erl&ouml;schen kann.</span>
+      </label>
+
+    </div>
+
+    <button id="ck-buy-btn" onclick="ckProceed()" disabled
+      style="display:block;width:100%;padding:15px;border-radius:10px;border:none;
+             font-family:inherit;font-size:1rem;font-weight:700;cursor:not-allowed;
+             background:#1E2D42;color:#4A5C78;transition:all .3s">
+      Jetzt kaufen &ndash; 69 &euro; &#8594;
+    </button>
+    <p style="font-size:.75rem;color:#4A5C78;margin-top:10px;text-align:center">
+      Du wirst zu Stripe weitergeleitet. Sichere Zahlung mit Kreditkarte oder SEPA.
+    </p>
+  </div>
+</div>
+
 <div class="ov" id="ovi"><div class="modal"><button class="mcl" onclick="cm('ovi')">&#10005;</button><h2>Impressum</h2><p class="msub">Angaben gem&auml;&szlig; &sect;5 TMG</p><div class="legal" id="ovi-c"></div></div></div>
 <div class="ov" id="ovd"><div class="modal"><button class="mcl" onclick="cm('ovd')">&#10005;</button><h2>Datenschutzerkl&auml;rung</h2><p class="msub">Gem&auml;&szlig; DSGVO / Art. 13 DSGVO</p><div class="legal" id="ovd-c"></div></div></div>
 <div class="ov" id="ova"><div class="modal"><button class="mcl" onclick="cm('ova')">&#10005;</button><h2>Allgemeine Gesch&auml;ftsbedingungen</h2><p class="msub">Stand: <span class="agbd"></span></p><div class="legal" id="ova-c"></div></div></div>
-<div class="ov" id="ovw"><div class="modal"><button class="mcl" onclick="cm('ovw')">&#10005;</button><h2>Widerrufsbelehrung</h2><p class="msub">F&uuml;r digitale Inhalte gem&auml;&szlig; &sect;356 Abs. 5 BGB</p><div class="legal" id="ovw-c"></div></div></div>
+<div class="ov" id="ovw"><div class="modal"><button class="mcl" onclick="cm('ovw')">&#10005;</button><h2>Widerrufsbelehrung</h2><p class="msub">F&uuml;r digitale Inhalte (Software/Lizenzschl&uuml;ssel) gem&auml;&szlig; &sect;356 Abs. 5 BGB</p><div class="legal" id="ovw-c"></div></div></div>
 
 <div class="ck-bar" id="ckbar">
   <div class="ck-t">Diese Website verwendet keine Tracking-Cookies und keine Analyse-Tools. <a href="datenschutz.html" style="color:var(--blue2);text-decoration:underline">Datenschutzerkl&auml;rung</a></div>
@@ -499,7 +561,10 @@ document.querySelectorAll('.dvt').forEach(e=>e.textContent='finFlow '+V.v+' \u00
 document.querySelectorAll('.agbd').forEach(e=>e.textContent=V.date);
 document.getElementById('dlm').href=V.dlMac;
 document.getElementById('dlw').href=V.dlWin;
-document.getElementById('buybtn').href='https://buy.stripe.com/28E28t3xE727eB6gCUfQI00';
+document.getElementById('buybtn').removeAttribute('href');
+document.getElementById('buybtn').onclick=function(e){e.preventDefault();om('ock')};
+document.getElementById('buybtn').style.cursor='pointer';
+window._stripeUrl='https://buy.stripe.com/28E28t3xE727eB6gCUfQI00';
 document.getElementById('fmail').href='mailto:'+V.mail;
 document.getElementById('fpub').textContent=V.pubName;
 document.getElementById('fcp').textContent='\u00a9 '+new Date().getFullYear()+' FlowStudios \u00b7 '+V.pubName;
@@ -529,6 +594,24 @@ document.getElementById('ovi-c').innerHTML='<h3>Verantwortlich</h3><p><strong>'+
 document.getElementById('ovd-c').innerHTML=lbox+'finFlow und diese Website erheben keinerlei Daten \u00fcber Analysetools, Cookies oder Drittdienste.</div><h3>1. Verantwortliche Stelle</h3><p>'+V.pubName+', FlowStudios, '+V.pubStreet+', '+V.pubCity+' \u00b7 <a href="mailto:'+V.mail+'">'+V.mail+'</a></p><h3>2. Datenerhebung</h3><p>Diese Website verwendet keine Tracking-Cookies, keine Analyse-Tools und keine eingebetteten Drittdienste. Beim Seitenaufruf \u00fcbertr\u00e4gt dein Browser technisch bedingt IP-Adresse, Datum/Uhrzeit und aufgerufene URL an den Webserver. Diese Daten werden nicht gespeichert oder ausgewertet.</p><h3>3. Kontakt per E-Mail</h3><p>Daten werden ausschlie\u00dflich zur Bearbeitung deiner Anfrage gespeichert. Rechtsgrundlage: Art. 6 Abs. 1 lit. b oder f DSGVO.</p><h3>4. Software finFlow</h3><p>finFlow selbst verarbeitet ausschlie\u00dflich lokal eingegebene Daten, die auf deinem Ger\u00e4t verbleiben. Als Nutzer bist du gem\u00e4\u00df Art. 4 Nr. 7 DSGVO selbst Verantwortlicher f\u00fcr die Verarbeitung deiner Kundendaten.</p><h3>5. Zahlungsabwicklung über Stripe</h3><p>Für die Zahlungsabwicklung nutzen wir Stripe Payments Europe Ltd., Dublin, Irland. Bei einem Kauf werden Name, E-Mail-Adresse und Zahlungsdaten an Stripe übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO. Datenschutzerklärung: <a href=\"https://stripe.com/de/privacy\" target=\"_blank\" rel=\"noopener\">stripe.com/de/privacy</a></p><h3>6. Deine Rechte</h3><p>Auskunft, Berichtigung, L\u00f6schung, Einschr\u00e4nkung, Daten\u00fcbertragbarkeit, Widerspruch (Art. 15\u201321 DSGVO).</p><h3>Stand</h3><p>'+V.date+'</p>';
 document.getElementById('ova-c').innerHTML='<h3>\u00a71 Geltungsbereich</h3><p>Diese AGB gelten f\u00fcr alle Vertr\u00e4ge \u00fcber Lizenzen der Software finFlow zwischen FlowStudios ('+V.pubName+', '+V.pubStreet+', '+V.pubCity+') und K\u00e4ufern.</p><h3>\u00a72 Vertragsschluss</h3><p>Der Kauf erfolgt per E-Mail-Anfrage an <a href="mailto:'+V.mail+'">'+V.mail+'</a>. Der Vertrag kommt mit \u00dcbersendung des Lizenzschl\u00fcssels zustande.</p><h3>\u00a73 Leistungen</h3><p>Die Einzellizenz berechtigt eine Person zur dauerhaften Installation und Nutzung von finFlow. Der Schl\u00fcssel gew\u00e4hrt Zugang zu allen Updates der aktuellen Hauptversion (3.x) f\u00fcr 12 Monate ab Kaufdatum. Eine neue Hauptversion (z.B. 4.x) stellt ein eigenst\u00e4ndiges Upgrade dar und ist nicht im Kaufpreis enthalten.</p><h3>\u00a74 Preise</h3><p>Preise in Euro. '+V.ust+'</p><p>Zahlungsabwicklung über Stripe Payments Europe Ltd., Dublin, Irland. Es gelten die AGB von Stripe: <a href=\"https://stripe.com/de/legal\" target=\"_blank\" rel=\"noopener\">stripe.com/de/legal</a></p><h3>\u00a75 Haftung</h3><p>FlowStudios \u00fcbernimmt keine Gew\u00e4hr f\u00fcr die steuerrechtliche Korrektheit erzeugter Dokumente. Die Software ersetzt keine Steuer- oder Rechtsberatung.</p><h3>\u00a76 Geltendes Recht</h3><p>Deutsches Recht. Gerichtsstand: '+V.pubCity+'.</p>';
 document.getElementById('ovw-c').innerHTML='<h3>Widerrufsrecht</h3><p>Du hast das Recht, binnen 14 Tagen ohne Angabe von Gr\u00fcnden diesen Vertrag zu widerrufen. Widerruf per E-Mail an: <a href="mailto:'+V.mail+'">'+V.mail+'</a></p><h3>Erl\u00f6schen bei digitalen Inhalten</h3>'+lbox+'Das Widerrufsrecht erl\u00f6scht vorzeitig, wenn die Vertragsausf\u00fchrung (Schl\u00fcssel\u00fcbermittlung) begonnen hat und du ausdr\u00fccklich zugestimmt hast, dass damit vor Fristablauf begonnen wird, und du best\u00e4tigt hast, dein Widerrufsrecht zu verlieren (\u00a7356 Abs. 5 BGB). Diese Zustimmung erteilst du durch Anforderung des Schl\u00fcssels per E-Mail.</div><h3>Folgen des Widerrufs</h3><p>Wir erstatten alle Zahlungen unverz\u00fcglich, sp\u00e4testens binnen 14 Tagen ab Eingang deiner Widerrufserkl\u00e4rung.</p>';
+
+function ckUpdate(){
+  var all=['ck1','ck2','ck3','ck4'].every(function(id){return document.getElementById(id).checked});
+  var btn=document.getElementById('ck-buy-btn');
+  if(all){
+    btn.disabled=false;btn.style.cursor='pointer';
+    btn.style.background='linear-gradient(135deg,#4070FF,#00C4B0)';
+    btn.style.color='#fff';
+  } else {
+    btn.disabled=true;btn.style.cursor='not-allowed';
+    btn.style.background='#1E2D42';btn.style.color='#4A5C78';
+  }
+}
+function ckProceed(){
+  var all=['ck1','ck2','ck3','ck4'].every(function(id){return document.getElementById(id).checked});
+  if(all){cm('ock');window.open(window._stripeUrl,'_blank');}
+}
+
 </script>
 </body>
 </html>
