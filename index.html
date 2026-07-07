@@ -5,16 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>finFlow – Buchhaltung für Kleingewerbe | FlowWerk</title>
 <meta name="description" content="finFlow: lokale Buchhaltungssoftware für Kleingewerbe. Rechnungen, Angebote, Mahnwesen, EÜR-Export – ohne Cloud, ohne Abo, ohne Datenweitergabe.">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://flow-werk.de/">
-<meta property="og:title" content="finFlow – Buchhaltung für Kleingewerbe | FlowWerk">
-<meta property="og:description" content="Lokale Buchhaltungssoftware für Kleingewerbe. Rechnungen, Angebote, Mahnwesen, EÜR – komplett offline, ohne Abo. Einmal kaufen, dauerhaft nutzen.">
-<meta property="og:image" content="https://flow-werk.de/og-image.png">
-<meta property="og:locale" content="de_DE">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="finFlow – Buchhaltung für Kleingewerbe">
-<meta name="twitter:description" content="Lokale Buchhaltungssoftware. Komplett offline, ohne Abo, einmal kaufen.">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -317,7 +307,7 @@ footer{border-top:1px solid #1E2D42;padding:72px 0 0;background:#060A12}
 </head>
 <body>
 <script>
-const V={v:"3.3.0",date:"Juli 2026",dlMac:"downloads/finFlow-Installer-3_3_0.dmg",dlWin:"downloads/finFlow-Setup-3_3_0.exe",cl:"changelog.html",mail:"info@flow-werk.de",pubName:"Florian Haußmann",pubStreet:"Haldestra\u00dfe 8",pubCity:"72644 Oberboihingen",ust:"Gem\u00e4\u00df \u00a719 UStG wird keine Umsatzsteuer ausgewiesen."};
+const V={v:"3.4.0",date:"Juli 2026",dlMac:"downloads/finFlow-Installer-3_3_0.dmg",dlWin:"downloads/finFlow-Setup-3_3_0.exe",cl:"CHANGELOG.md",mail:"info@flow-werk.dev",pubName:"Florian Haußmann",pubStreet:"Haldestra\u00dfe 8",pubCity:"72644 Oberboihingen",ust:"Gem\u00e4\u00df \u00a719 UStG wird keine Umsatzsteuer ausgewiesen."};
 
 function ckUpdate(){
   var all=['ck1','ck2','ck3','ck4','ck5'].every(function(id){return document.getElementById(id).checked});
@@ -366,18 +356,13 @@ document.getElementById('oveula-c').innerHTML=
 '<p>Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts. Gerichtsstand ist, soweit gesetzlich zulässig, 72644 Oberboihingen.</p>' +
 
 '<h3>10. Kontakt</h3>' +
-'<p>FlowWerk · Florian Haußmann · Haldenstraße 8 · 72644 Oberboihingen · <a href="mailto:info@flow-werk.de">info@flow-werk.de</a></p>';
+'<p>FlowWerk · Florian Haußmann · Haldenstraße 8 · 72644 Oberboihingen · <a href="mailto:info@flow-werk.dev">info@flow-werk.dev</a></p>';
 
 </script>
 
 <nav class="nav" id="nav">
   <div class="nav-i">
-    <a href="#" class="logo" aria-label="finFlow"><svg width="30" height="30" viewBox="0 0 64 64" style="border-radius:8px;flex-shrink:0">
-<rect width="64" height="64" rx="14" fill="#0E1A2E"/>
-<path d="M 24,20 L 14,32 L 24,44" stroke="#4070FF" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M 40,20 L 50,32 L 40,44" stroke="#9b30d0" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="35" y1="18" x2="29" y2="46" stroke="#00C4B0" stroke-width="4.5" stroke-linecap="round"/>
-</svg><div class="logo-text">fin<b>Flow</b></div></a>
+    <a href="#" class="logo" aria-label="finFlow"><div class="logo-mark">ff</div><div class="logo-text">fin<b>Flow</b></div></a>
     <ul class="nav-links">
       <li><a href="#features">Funktionen</a></li>
       <li><a href="#product">Produkt</a></li>
@@ -407,7 +392,22 @@ document.getElementById('oveula-c').innerHTML=
     <div class="mscene" id="ms">
       <div class="mcard" id="mc">
         <div class="mbar"><span class="mdot" style="background:#FF5F57"></span><span class="mdot" style="background:#FFBD2E"></span><span class="mdot" style="background:#28C840"></span><span class="mtitle">finFlow &mdash; Dashboard</span></div>
-        <img src="screenshot-dashboard.png" alt="finFlow Dashboard &ndash; Übersicht über offene Rechnungen, Umsatz und letzte Aktivitäten" style="width:100%;display:block;border-bottom-left-radius:14px;border-bottom-right-radius:14px"/>
+        <div class="mbody">
+          <div class="msb"><div class="mslogo">fin<b>Flow</b></div><div class="msnav a">Dashboard</div><div class="msnav">Kunden</div><div class="msnav">Rechnungen</div><div class="msnav">Angebote</div><div class="msnav">Mahnwesen</div><div class="msnav">E&Uuml;R-Export</div><div class="msnav">Einstellungen</div></div>
+          <div>
+            <div class="mkpis">
+              <div class="mkpi"><div class="mkl">Offen</div><div class="mkv tc">2.430 &euro;</div><div class="mks">4 Rechnungen</div></div>
+              <div class="mkpi"><div class="mkl">&Uuml;berf&auml;llig</div><div class="mkv rc">480 &euro;</div><div class="mks">1 Rechnung</div></div>
+              <div class="mkpi"><div class="mkl">Umsatz 2026</div><div class="mkv">11.840 &euro;</div><div class="mks">gesamt</div></div>
+            </div>
+            <div class="mlist">
+              <div class="mlh"><span>Nummer</span><span>Kunde</span><span>Betrag</span><span>Status</span></div>
+              <div class="mlr"><span>RE-2026-0012</span><span>Maier Design</span><span>840 &euro;</span><span><span class="bdg bo">offen</span></span></div>
+              <div class="mlr"><span>RE-2026-0011</span><span>K&ouml;nig &amp; Co.</span><span>1.590 &euro;</span><span><span class="bdg bp">bezahlt</span></span></div>
+              <div class="mlr"><span>RE-2026-0010</span><span>Weber GmbH</span><span>480 &euro;</span><span><span class="bdg br">&uuml;berf&auml;llig</span></span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -522,21 +522,12 @@ document.getElementById('oveula-c').innerHTML=
 <footer>
   <div class="c">
     <div class="fg">
-      <div class="fbl"><a href="#" class="logo"><svg width="30" height="30" viewBox="0 0 64 64" style="border-radius:8px;flex-shrink:0">
-<rect width="64" height="64" rx="14" fill="#0E1A2E"/>
-<path d="M 24,20 L 14,32 L 24,44" stroke="#4070FF" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M 40,20 L 50,32 L 40,44" stroke="#9b30d0" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="35" y1="18" x2="29" y2="46" stroke="#00C4B0" stroke-width="4.5" stroke-linecap="round"/>
-</svg><div class="logo-text">fin<b>Flow</b></div></a><p class="ftag">Lokale Buchhaltungssoftware f&uuml;r Kleingewerbe und Freiberufler.</p>
-<p style="font-size:.78rem;color:#4A5C78;margin-top:14px;line-height:1.8">
-Ein Produkt von <strong style="color:#8899BB">FlowWerk</strong><br>
-Auch von FlowWerk: <a href="#" style="color:#4070FF" title="Personalplanung als Web-App">stafFlow</a> &ndash; Dienstplanung f&uuml;r Teams
-</p><p class="fpub">Ein Produkt von <span id="fpub"></span> &middot; FlowWerk</p></div>
+      <div class="fbl"><a href="#" class="logo"><div class="logo-mark">ff</div><div class="logo-text">fin<b>Flow</b></div></a><p class="ftag">Lokale Buchhaltungssoftware f&uuml;r Kleingewerbe und Freiberufler.</p><p class="fpub">Ein Produkt von <span id="fpub"></span> &middot; FlowWerk</p></div>
       <div class="fcol"><h4>Produkt</h4><ul><li><a href="#features">Funktionen</a></li><li><a href="#download">Download</a></li><li><a href="#pricing">Preise</a></li><li><a href="#" class="cl-link">Changelog</a></li></ul></div>
       <div class="fcol"><h4>Support</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#" id="fmail">E-Mail schreiben</a></li></ul></div>
       <div class="fcol"><h4>Rechtliches</h4><ul><li><button onclick="om('ovi')">Impressum</button></li><li><a href="datenschutz.html">Datenschutz</a></li><li><button onclick="om('ova')">AGB</button></li><li><button onclick="om('ovw')">Widerruf</button></li><li><button onclick="om('oveula')">EULA</button></li></ul></div>
     </div>
-    <div class="fbot"><span style="display:inline-flex;align-items:center;gap:8px"><svg width="20" height="20" viewBox="0 0 64 64" style="flex-shrink:0"><rect width="64" height="64" rx="14" fill="#0E1A2E"/><path d="M 24,20 L 14,32 L 24,44" stroke="#4070FF" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M 40,20 L 50,32 L 40,44" stroke="#9b30d0" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="35" y1="18" x2="29" y2="46" stroke="#00C4B0" stroke-width="4.5" stroke-linecap="round"/></svg><span class="fcp" id="fcp"></span></span><span class="fver" id="fver"></span></div>
+    <div class="fbot"><span class="fcp" id="fcp"></span><span class="fver" id="fver"></span></div>
   </div>
 </footer>
 
@@ -594,9 +585,8 @@ Auch von FlowWerk: <a href="#" style="color:#4070FF" title="Personalplanung als 
              background:#1E2D42;color:#4A5C78;transition:all .3s">
       Kostenpflichtig bestellen (69 &euro;) &#8594;
     </button>
-    <p style="font-size:.75rem;color:#4A5C78;margin-top:10px;text-align:center;line-height:1.8">
-      Sichere Zahlung &uuml;ber Stripe (Kreditkarte, SEPA) &middot; Rechnung inklusive<br>
-      Lizenzschl&uuml;ssel per E-Mail &middot; In der Regel innerhalb weniger Stunden
+    <p style="font-size:.75rem;color:#4A5C78;margin-top:10px;text-align:center">
+      Du wirst zu Stripe weitergeleitet. Sichere Zahlung mit Kreditkarte oder SEPA.
     </p>
   </div>
 </div>
@@ -650,8 +640,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelect
 const lbox='<div class="lbox">';
 document.getElementById('ovi-c').innerHTML='<h3>Verantwortlich</h3><p><strong>'+V.pubName+'</strong><br>FlowWerk<br>'+V.pubStreet+'<br>'+V.pubCity+'</p><h3>Kontakt</h3><p>E-Mail: <a href="mailto:'+V.mail+'">'+V.mail+'</a></p><h3>Umsatzsteuer</h3><p>'+V.ust+'</p><h3>Haftung f\u00fcr Inhalte</h3><p>Als Dienstanbieter sind wir gem\u00e4\u00df \u00a77 Abs.1 TMG f\u00fcr eigene Inhalte nach den allgemeinen Gesetzen verantwortlich.</p><h3>Urheberrecht</h3><p>Die erstellten Inhalte unterliegen dem deutschen Urheberrecht. Vervielf\u00e4ltigung bedarf der schriftlichen Zustimmung.</p>';
 document.getElementById('ovd-c').innerHTML=lbox+'finFlow und diese Website erheben keinerlei Daten \u00fcber Analysetools, Cookies oder Drittdienste.</div><h3>1. Verantwortliche Stelle</h3><p>'+V.pubName+', FlowWerk, '+V.pubStreet+', '+V.pubCity+' \u00b7 <a href="mailto:'+V.mail+'">'+V.mail+'</a></p><h3>2. Datenerhebung</h3><p>Diese Website verwendet keine Tracking-Cookies, keine Analyse-Tools und keine eingebetteten Drittdienste. Beim Seitenaufruf \u00fcbertr\u00e4gt dein Browser technisch bedingt IP-Adresse, Datum/Uhrzeit und aufgerufene URL an den Webserver. Diese Daten werden nicht gespeichert oder ausgewertet.</p><h3>3. Kontakt per E-Mail</h3><p>Daten werden ausschlie\u00dflich zur Bearbeitung deiner Anfrage gespeichert. Rechtsgrundlage: Art. 6 Abs. 1 lit. b oder f DSGVO.</p><h3>4. Software finFlow</h3><p>finFlow selbst verarbeitet ausschlie\u00dflich lokal eingegebene Daten, die auf deinem Ger\u00e4t verbleiben. Als Nutzer bist du gem\u00e4\u00df Art. 4 Nr. 7 DSGVO selbst Verantwortlicher f\u00fcr die Verarbeitung deiner Kundendaten.</p><h3>5. Zahlungsabwicklung über Stripe</h3><p>Für die Zahlungsabwicklung nutzen wir Stripe Payments Europe Ltd., Dublin, Irland. Bei einem Kauf werden Name, E-Mail-Adresse und Zahlungsdaten an Stripe übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO. Datenschutzerklärung: <a href=\"https://stripe.com/de/privacy\" target=\"_blank\" rel=\"noopener\">stripe.com/de/privacy</a></p><h3>6. Deine Rechte</h3><p>Auskunft, Berichtigung, L\u00f6schung, Einschr\u00e4nkung, Daten\u00fcbertragbarkeit, Widerspruch (Art. 15\u201321 DSGVO).</p><h3>Stand</h3><p>'+V.date+'</p>';
-document.getElementById('ova-c').innerHTML='<h3>\u00a71 Geltungsbereich</h3><p>Diese AGB gelten f\u00fcr alle Vertr\u00e4ge \u00fcber Lizenzen der Software finFlow zwischen FlowWerk ('+V.pubName+', '+V.pubStreet+', '+V.pubCity+') und K\u00e4ufern.</p><h3>\u00a72 Vertragsschluss</h3><p>Die Bestellung erfolgt über den Stripe-Checkout auf flow-werk.de. Du gibst ein verbindliches Angebot ab, indem du den Bestellvorgang durch Klick auf „Kostenpflichtig bestellen“ abschließt.</p><p>Der Vertrag kommt mit erfolgreicher Zahlungsbestätigung durch Stripe zustande. Den Lizenzschlüssel erhältst du anschließend per E-Mail an die bei Stripe hinterlegte Adresse.</p><h3>\u00a73 Leistungen</h3><p>Die Einzellizenz berechtigt eine Person zur dauerhaften Installation und Nutzung von finFlow. Der Schl\u00fcssel gew\u00e4hrt Zugang zu allen Updates der aktuellen Hauptversion (3.x) f\u00fcr 12 Monate ab Kaufdatum. Eine neue Hauptversion (z.B. 4.x) stellt ein eigenst\u00e4ndiges Upgrade dar und ist nicht im Kaufpreis enthalten.</p><h3>\u00a74 Preise</h3><p>Preise in Euro. '+V.ust+'</p><p>Zahlungsabwicklung über Stripe Payments Europe Ltd., Dublin, Irland. Es gelten die AGB von Stripe: <a href=\"https://stripe.com/de/legal\" target=\"_blank\" rel=\"noopener\">stripe.com/de/legal</a></p><h3>\u00a75 Haftung</h3><p>FlowWerk \u00fcbernimmt keine Gew\u00e4hr f\u00fcr die steuerrechtliche Korrektheit erzeugter Dokumente. Die Software ersetzt keine Steuer- oder Rechtsberatung.</p><h3>\u00a76 Geltendes Recht</h3><p>Deutsches Recht. Gerichtsstand: '+V.pubCity+'.</p>';
-document.getElementById('ovw-c').innerHTML='<h3>Widerrufsrecht</h3><p>Du hast das Recht, binnen 14 Tagen ohne Angabe von Gr\u00fcnden diesen Vertrag zu widerrufen. Widerruf per E-Mail an: <a href="mailto:'+V.mail+'">'+V.mail+'</a></p><h3>Erl\u00f6schen bei digitalen Inhalten</h3>'+lbox+'Das Widerrufsrecht erl\u00f6scht vorzeitig, wenn die Vertragsausf\u00fchrung (Schl\u00fcssel\u00fcbermittlung) begonnen hat und du ausdr\u00fccklich zugestimmt hast, dass damit vor Fristablauf begonnen wird, und du best\u00e4tigt hast, dein Widerrufsrecht zu verlieren (\u00a7356 Abs. 5 BGB). Diese Zustimmung erteilst du mit dem Setzen des Hakens \u201eIch verlange ausdr\u00fccklich, dass die Bereitstellung des Lizenzschl\u00fcssels sofort beginnt. Mir ist bekannt, dass mein Widerrufsrecht dadurch gem\u00e4\u00df \u00a7356 Abs.\u00a05 BGB erl\u00f6schen kann.\u201c beim Kaufvorgang.</div><h3>Folgen des Widerrufs</h3><p>Wir erstatten alle Zahlungen unverz\u00fcglich, sp\u00e4testens binnen 14 Tagen ab Eingang deiner Widerrufserkl\u00e4rung.</p><h3>Muster-Widerrufsformular</h3><p>(Wenn du den Vertrag widerrufen m\u00f6chtest, f\u00fclle bitte dieses Formular aus und sende es zur\u00fcck.)</p><div class=\"lbox\">An: Florian Hau\u00dfmann, FlowWerk, Haldestra\u00dfe 8, 72644 Oberboihingen<br>E-Mail: <a href=\"mailto:info@flow-werk.de\">info@flow-werk.de</a><br><br>Hiermit widerrufe ich den von mir abgeschlossenen Vertrag \u00fcber den Kauf der folgenden digitalen Leistung:<br><br>Bestellt am: _______________<br>Name des Verbrauchers: _______________<br>Anschrift des Verbrauchers: _______________<br><br>Unterschrift (nur bei Mitteilung auf Papier): _______________<br>Datum: _______________</div>';
+document.getElementById('ova-c').innerHTML='<h3>\u00a71 Geltungsbereich</h3><p>Diese AGB gelten f\u00fcr alle Vertr\u00e4ge \u00fcber Lizenzen der Software finFlow zwischen FlowWerk ('+V.pubName+', '+V.pubStreet+', '+V.pubCity+') und K\u00e4ufern.</p><h3>\u00a72 Vertragsschluss</h3><p>Die Bestellung erfolgt über den Stripe-Checkout auf flow-werk.dev. Du gibst ein verbindliches Angebot ab, indem du den Bestellvorgang durch Klick auf „Kostenpflichtig bestellen“ abschließt.</p><p>Der Vertrag kommt mit erfolgreicher Zahlungsbestätigung durch Stripe zustande. Den Lizenzschlüssel erhältst du anschließend per E-Mail an die bei Stripe hinterlegte Adresse.</p><h3>\u00a73 Leistungen</h3><p>Die Einzellizenz berechtigt eine Person zur dauerhaften Installation und Nutzung von finFlow. Der Schl\u00fcssel gew\u00e4hrt Zugang zu allen Updates der aktuellen Hauptversion (3.x) f\u00fcr 12 Monate ab Kaufdatum. Eine neue Hauptversion (z.B. 4.x) stellt ein eigenst\u00e4ndiges Upgrade dar und ist nicht im Kaufpreis enthalten.</p><h3>\u00a74 Preise</h3><p>Preise in Euro. '+V.ust+'</p><p>Zahlungsabwicklung über Stripe Payments Europe Ltd., Dublin, Irland. Es gelten die AGB von Stripe: <a href=\"https://stripe.com/de/legal\" target=\"_blank\" rel=\"noopener\">stripe.com/de/legal</a></p><h3>\u00a75 Haftung</h3><p>FlowWerk \u00fcbernimmt keine Gew\u00e4hr f\u00fcr die steuerrechtliche Korrektheit erzeugter Dokumente. Die Software ersetzt keine Steuer- oder Rechtsberatung.</p><h3>\u00a76 Geltendes Recht</h3><p>Deutsches Recht. Gerichtsstand: '+V.pubCity+'.</p>';
+document.getElementById('ovw-c').innerHTML='<h3>Widerrufsrecht</h3><p>Du hast das Recht, binnen 14 Tagen ohne Angabe von Gr\u00fcnden diesen Vertrag zu widerrufen. Widerruf per E-Mail an: <a href="mailto:'+V.mail+'">'+V.mail+'</a></p><h3>Erl\u00f6schen bei digitalen Inhalten</h3>'+lbox+'Das Widerrufsrecht erl\u00f6scht vorzeitig, wenn die Vertragsausf\u00fchrung (Schl\u00fcssel\u00fcbermittlung) begonnen hat und du ausdr\u00fccklich zugestimmt hast, dass damit vor Fristablauf begonnen wird, und du best\u00e4tigt hast, dein Widerrufsrecht zu verlieren (\u00a7356 Abs. 5 BGB). Diese Zustimmung erteilst du mit dem Setzen des Hakens \u201eIch verlange ausdr\u00fccklich, dass die Bereitstellung des Lizenzschl\u00fcssels sofort beginnt. Mir ist bekannt, dass mein Widerrufsrecht dadurch gem\u00e4\u00df \u00a7356 Abs.\u00a05 BGB erl\u00f6schen kann.\u201c beim Kaufvorgang.</div><h3>Folgen des Widerrufs</h3><p>Wir erstatten alle Zahlungen unverz\u00fcglich, sp\u00e4testens binnen 14 Tagen ab Eingang deiner Widerrufserkl\u00e4rung.</p><h3>Muster-Widerrufsformular</h3><p>(Wenn du den Vertrag widerrufen m\u00f6chtest, f\u00fclle bitte dieses Formular aus und sende es zur\u00fcck.)</p><div class=\"lbox\">An: Florian Hau\u00dfmann, FlowWerk, Haldestra\u00dfe 8, 72644 Oberboihingen<br>E-Mail: <a href=\"mailto:info@flow-werk.dev\">info@flow-werk.dev</a><br><br>Hiermit widerrufe ich den von mir abgeschlossenen Vertrag \u00fcber den Kauf der folgenden digitalen Leistung:<br><br>Bestellt am: _______________<br>Name des Verbrauchers: _______________<br>Anschrift des Verbrauchers: _______________<br><br>Unterschrift (nur bei Mitteilung auf Papier): _______________<br>Datum: _______________</div>';
 
 function ckUpdate(){
   var all=['ck1','ck2','ck3','ck4','ck5'].every(function(id){return document.getElementById(id).checked});
@@ -700,7 +690,7 @@ document.getElementById('oveula-c').innerHTML=
 '<p>Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts. Gerichtsstand ist, soweit gesetzlich zulässig, 72644 Oberboihingen.</p>' +
 
 '<h3>10. Kontakt</h3>' +
-'<p>FlowWerk · Florian Haußmann · Haldenstraße 8 · 72644 Oberboihingen · <a href="mailto:info@flow-werk.de">info@flow-werk.de</a></p>';
+'<p>FlowWerk · Florian Haußmann · Haldenstraße 8 · 72644 Oberboihingen · <a href="mailto:info@flow-werk.dev">info@flow-werk.dev</a></p>';
 
 </script>
 </body>

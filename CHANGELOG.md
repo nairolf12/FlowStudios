@@ -2,8 +2,17 @@
 
 ---
 
-## Version 3.3.0 – Juli 2026
+## Version 3.4.0 – Juli 2026
 **Aktuelles Release**
+
+- **Artikel-Import (CSV/Excel)** – bestehende Artikellisten lassen sich jetzt genau wie Kundenlisten bequem importieren, inklusive automatischer Erkennung bereits vorhandener Artikel
+- Dunkelmodus optisch überarbeitet – einheitlicheres, ruhigeres Erscheinungsbild
+- Scrollverhalten in der gesamten App spürbar verbessert, insbesondere bei Trackpad-Nutzung auf dem Mac
+- Kleinere Detailverbesserungen an der Seitenleiste
+
+---
+
+## Version 3.3.0 – Juli 2026
 
 - **Onboarding-Assistent** – beim ersten Start führt ein kurzer Assistent durch die wichtigsten Einstellungen (Firmendaten, Bankverbindung, Logo)
 - **„Über finFlow"-Dialog** – zeigt Version, Lizenzstatus und Kontaktinfo auf einen Blick
