@@ -4,88 +4,166 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<title>Changelog – finFlow | FlowWerk</title>
+<title>Changelog &ndash; finFlow | FlowWerk</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-  background:#060A12;color:#F0F4FF;line-height:1.8;-webkit-font-smoothing:antialiased}
-.nav{background:rgba(6,10,18,.95);border-bottom:1px solid #1E2D42;padding:16px 32px;
-  display:flex;align-items:center;justify-content:space-between;position:sticky;top:0}
-.nav-logo{font-size:1.05rem;font-weight:800;color:#F0F4FF;text-decoration:none}
-.nav-logo b{background:linear-gradient(135deg,#4070FF,#00C4B0);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.nav-back{font-size:.85rem;color:#8899BB;text-decoration:none}
-.nav-back:hover{color:#F0F4FF}
-.wrap{max-width:720px;margin:0 auto;padding:56px 32px 96px}
-h1{font-size:1.9rem;font-weight:900;letter-spacing:-.03em;margin-bottom:40px}
-h2{font-size:1.15rem;font-weight:700;color:#F0F4FF;margin:36px 0 6px}
-.badge{display:inline-block;font-size:.72rem;font-weight:700;color:#00C4B0;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060A12;--bg2:#0B1220;--bg3:#101A2C;
+  --s1:#131E30;--s2:#182338;
+  --border:#1E2D42;--border2:rgba(255,255,255,.08);
+  --blue:#4070FF;--blue2:#6990FF;
+  --teal:#00C4B0;--teal2:#00E8D2;
+  --grad:linear-gradient(135deg,#4070FF 0%,#00C4B0 100%);
+  --white:#FFFFFF;
+  --t1:#F0F4FF;--t2:#8899BB;--t3:#4A5C78;
+  --green:#22D3AA;--red:#FF5E7A;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Arial,sans-serif;
+  --r:12px;--r2:20px;--max:1240px;--nav-h:64px;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--t1);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--font);cursor:pointer}
+.c{max-width:var(--max);margin:0 auto;padding:0 32px}
+
+/* Nav */
+.nav{position:fixed;top:0;inset-x:0;z-index:900;height:var(--nav-h);background:rgba(6,10,18,.92);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid #1E2D42}
+.nav-i{height:100%;max-width:var(--max);margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-size:1.1rem;font-weight:800;letter-spacing:-.02em}
+.logo-text b{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-back{font-size:.86rem;color:var(--t2);display:flex;align-items:center;gap:6px;transition:color .2s}
+.nav-back:hover{color:var(--t1)}
+
+/* Hintergrund-Deko wie Hauptseite */
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(110px)}
+.o1{width:600px;height:600px;background:radial-gradient(circle,rgba(64,112,255,.15),transparent 70%);top:-120px;right:-80px}
+.o2{width:450px;height:450px;background:radial-gradient(circle,rgba(0,196,176,.12),transparent 70%);bottom:100px;left:-100px}
+.bgwrap{position:relative;overflow:hidden}
+
+/* Content */
+.wrap{max-width:760px;margin:0 auto;padding:calc(var(--nav-h) + 64px) 32px 96px;position:relative;z-index:1}
+h1{font-size:clamp(2rem,4vw,2.6rem);font-weight:900;letter-spacing:-.03em;margin-bottom:12px;color:var(--t1)}
+.sub{font-size:.95rem;color:var(--t3);margin-bottom:48px}
+h2{font-size:1.2rem;font-weight:800;color:var(--t1);margin:40px 0 8px;letter-spacing:-.01em}
+.cl-badge{display:inline-block;font-size:.72rem;font-weight:700;color:var(--teal);
   background:rgba(0,196,176,.1);border:1px solid rgba(0,196,176,.25);
-  padding:2px 10px;border-radius:999px;margin-bottom:10px}
-ul{list-style:none;margin:8px 0 16px}
-li{color:#8899BB;font-size:.92rem;padding-left:20px;position:relative;margin-bottom:8px}
-li::before{content:"–";position:absolute;left:0;color:#4070FF}
-li strong{color:#F0F4FF}
-hr{border:none;border-top:1px solid #1E2D42;margin:32px 0}
-p{color:#8899BB;font-size:.92rem}
+  padding:3px 12px;border-radius:999px;margin-bottom:14px}
+.cl-list{list-style:none;margin:10px 0 8px}
+.cl-list li{color:var(--t2);font-size:.94rem;line-height:1.7;padding-left:22px;position:relative;margin-bottom:10px}
+.cl-list li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--grad)}
+.cl-list li strong{color:var(--t1);font-weight:700}
+.cl-hr{border:none;border-top:1px solid var(--border);margin:36px 0}
+p{color:var(--t2);font-size:.94rem}
+
+/* Footer (1:1 aus Hauptseite) */
+footer{border-top:1px solid var(--border);padding:56px 0 28px;position:relative;z-index:1}
+.fg{display:flex;justify-content:space-between;gap:48px;flex-wrap:wrap;margin-bottom:40px}
+.fbl{max-width:280px}
+.fbl .logo{margin-bottom:14px}
+.ftag{font-size:.86rem;color:var(--t3);line-height:1.7}
+.fcol h4{font-size:.8rem;font-weight:700;color:var(--t1);margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em}
+.fcol ul{list-style:none}
+.fcol li{margin-bottom:10px}
+.fcol a,.fcol button{background:none;border:none;padding:0;font-size:.88rem;color:var(--t3);transition:color .2s;cursor:pointer;font-family:inherit}
+.fcol a:hover,.fcol button:hover{color:var(--t1)}
+.fbot{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;gap:12px}
+.fcp{font-size:.8rem;color:var(--t3)}
+.fver{font-size:.78rem;color:var(--t3);font-family:ui-monospace,monospace}
 </style>
 </head>
 <body>
+
 <nav class="nav">
-  <a href="/" class="nav-logo">flow<b>Werk</b></a>
-  <a href="/" class="nav-back">&larr; Zur&uuml;ck zur Startseite</a>
+  <div class="nav-i">
+    <a href="/" class="logo" aria-label="finFlow">
+      <svg width="30" height="30" viewBox="0 0 64 64" style="border-radius:8px;flex-shrink:0">
+        <rect width="64" height="64" rx="14" fill="#0E1A2E"/>
+        <path d="M 24,20 L 14,32 L 24,44" stroke="#4070FF" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 40,20 L 50,32 L 40,44" stroke="#9b30d0" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="35" y1="18" x2="29" y2="46" stroke="#00C4B0" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+      <div class="logo-text">fin<b>Flow</b></div>
+    </a>
+    <a href="/" class="nav-back">&larr; Zur&uuml;ck zur Startseite</a>
+  </div>
 </nav>
-<div class="wrap">
-<h1>finFlow – Versionshistorie</h1>
-<hr>
+
+<div class="bgwrap">
+  <div class="orb o1" aria-hidden="true"></div>
+  <div class="orb o2" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <h1>Versionshistorie</h1>
+    <p class="sub">Alle &Auml;nderungen und Verbesserungen von finFlow im &Uuml;berblick.</p>
+<hr class="cl-hr">
 <h2>Version 3.4.0 – Juli 2026</h2>
-<p class="badge">Aktuelles Release</p>
-<ul>
+<p class="cl-badge">Aktuelles Release</p>
+<ul class="cl-list">
 <li><strong>Artikel-Import (CSV/Excel)</strong> – bestehende Artikellisten lassen sich jetzt genau wie Kundenlisten bequem importieren, inklusive automatischer Erkennung bereits vorhandener Artikel</li>
 <li>Dunkelmodus optisch überarbeitet – einheitlicheres, ruhigeres Erscheinungsbild</li>
 <li>Scrollverhalten in der gesamten App spürbar verbessert, insbesondere bei Trackpad-Nutzung auf dem Mac</li>
 <li>Kleinere Detailverbesserungen an der Seitenleiste</li>
 </ul>
-<hr>
+<hr class="cl-hr">
 <h2>Version 3.3.0 – Juli 2026</h2>
-<ul>
+<ul class="cl-list">
 <li><strong>Onboarding-Assistent</strong> – beim ersten Start führt ein kurzer Assistent durch die wichtigsten Einstellungen (Firmendaten, Bankverbindung, Logo)</li>
 <li><strong>„Über finFlow"-Dialog</strong> – zeigt Version, Lizenzstatus und Kontaktinfo auf einen Blick</li>
 <li>Verbesserungen an der Benutzeroberfläche</li>
 </ul>
-<hr>
+<hr class="cl-hr">
 <h2>Version 3.2.0 – Juli 2026</h2>
-<ul>
+<ul class="cl-list">
 <li><strong>Testversion</strong> – finFlow kann vor dem Kauf kostenlos getestet werden (bis zu 5 Rechnungen, 3 Angebote)</li>
 <li>PDFs in der Testversion enthalten einen Wasserzeichen-Hinweis</li>
 <li>Einige Funktionen (Mahnwesen, EÜR-Export, Datensicherung) sind der Vollversion vorbehalten</li>
 </ul>
-<hr>
+<hr class="cl-hr">
 <h2>Version 3.1.0 – Juli 2026</h2>
-<ul>
+<ul class="cl-list">
 <li><strong>Dunkelmodus</strong> – vollständig dunkles Design wählbar</li>
 <li><strong>Eigenes Logo</strong> – importierbares Logo erscheint automatisch auf allen PDFs</li>
 <li><strong>Dashboard</strong> – Übersicht über offene Rechnungen, Umsatz und aktuelle Aktivitäten</li>
 <li><strong>Lieferschein-PDF</strong> – aus jeder Rechnung heraus erzeugbar</li>
 <li>Diverse Stabilitäts- und Darstellungsverbesserungen</li>
 </ul>
-<hr>
+<hr class="cl-hr">
 <h2>Version 2.0 – 2026</h2>
-<ul>
+<ul class="cl-list">
 <li>Angebotsverwaltung mit direkter Umwandlung in Rechnungen</li>
 <li>Mahnwesen (1. und 2. Mahnung als PDF)</li>
 <li>Rabatte pro Rechnungsposition</li>
 <li>Plattformwechsel Mac ↔ Windows über Datensicherung</li>
 <li>EÜR-Export als Excel und PDF</li>
 </ul>
-<hr>
+<hr class="cl-hr">
 <h2>Version 1.0 – 2026</h2>
-<ul>
+<ul class="cl-list">
 <li>Erstes stabiles Release</li>
 <li>Kundenverwaltung, Rechnungserstellung, PDF-Export</li>
 <li>E-Mail-Versand direkt aus der App</li>
 <li>Lokale SQLite-Datenbank, vollständig offline</li>
 </ul>
+  </div>
+
+<footer>
+  <div class="c">
+    <div class="fg">
+      <div class="fbl"><a href="#" class="logo"><svg width="30" height="30" viewBox="0 0 64 64" style="border-radius:8px;flex-shrink:0">
+<rect width="64" height="64" rx="14" fill="#0E1A2E"/>
+<path d="M 24,20 L 14,32 L 24,44" stroke="#4070FF" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 40,20 L 50,32 L 40,44" stroke="#9b30d0" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="35" y1="18" x2="29" y2="46" stroke="#00C4B0" stroke-width="4.5" stroke-linecap="round"/>
+</svg><div class="logo-text">fin<b>Flow</b></div></a><p class="ftag">Lokale Buchhaltungssoftware f&uuml;r Kleingewerbe und Freiberufler.</p><p style="font-size:.78rem;color:#4A5C78;margin-top:14px;line-height:1.8">Ein Produkt von <strong style="color:#8899BB">FlowWerk</strong><br>Auch von FlowWerk: <a href="#" style="color:#4070FF" title="Personalplanung als Web-App">stafFlow</a> &ndash; Dienstplanung f&uuml;r Teams</p></div>
+      <div class="fcol"><h4>Produkt</h4><ul><li><a href="#features">Funktionen</a></li><li><a href="#download">Download</a></li><li><a href="#pricing">Preise</a></li><li><a href="#" class="cl-link">Changelog</a></li></ul></div>
+      <div class="fcol"><h4>Support</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#" id="fmail">E-Mail schreiben</a></li></ul></div>
+      <div class="fcol"><h4>Rechtliches</h4><ul><li><button onclick="om('ovi')">Impressum</button></li><li><a href="datenschutz.html">Datenschutz</a></li><li><button onclick="om('ova')">AGB</button></li><li><button onclick="om('ovw')">Widerruf</button></li><li><button onclick="om('oveula')">EULA</button></li></ul></div>
+    </div>
+    <div class="fbot"><span class="fcp" id="fcp"></span><span class="fver" id="fver"></span></div>
+  </div>
+</footer>
+
 </div>
 </body>
 </html>

@@ -307,7 +307,7 @@ footer{border-top:1px solid #1E2D42;padding:72px 0 0;background:#060A12}
 </head>
 <body>
 <script>
-const V={v:"3.4.0",date:"Juli 2026",dlMac:"downloads/finFlow-Installer-3_3_0.dmg",dlWin:"downloads/finFlow-Setup-3_3_0.exe",cl:"CHANGELOG.md",mail:"info@flow-werk.dev",pubName:"Florian Haußmann",pubStreet:"Haldestra\u00dfe 8",pubCity:"72644 Oberboihingen",ust:"Gem\u00e4\u00df \u00a719 UStG wird keine Umsatzsteuer ausgewiesen."};
+const V={v:"3.4.0",date:"Juli 2026",dlMac:"downloads/finFlow-Installer-3_3_0.dmg",dlWin:"downloads/finFlow-Setup-3_3_0.exe",cl:"changelog.html",mail:"info@flow-werk.dev",pubName:"Florian Haußmann",pubStreet:"Haldestra\u00dfe 8",pubCity:"72644 Oberboihingen",ust:"Gem\u00e4\u00df \u00a719 UStG wird keine Umsatzsteuer ausgewiesen."};
 
 function ckUpdate(){
   var all=['ck1','ck2','ck3','ck4','ck5'].every(function(id){return document.getElementById(id).checked});
@@ -362,7 +362,12 @@ document.getElementById('oveula-c').innerHTML=
 
 <nav class="nav" id="nav">
   <div class="nav-i">
-    <a href="#" class="logo" aria-label="finFlow"><div class="logo-mark">ff</div><div class="logo-text">fin<b>Flow</b></div></a>
+    <a href="#" class="logo" aria-label="finFlow"><svg width="30" height="30" viewBox="0 0 64 64" style="border-radius:8px;flex-shrink:0">
+<rect width="64" height="64" rx="14" fill="#0E1A2E"/>
+<path d="M 24,20 L 14,32 L 24,44" stroke="#4070FF" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 40,20 L 50,32 L 40,44" stroke="#9b30d0" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="35" y1="18" x2="29" y2="46" stroke="#00C4B0" stroke-width="4.5" stroke-linecap="round"/>
+</svg><div class="logo-text">fin<b>Flow</b></div></a>
     <ul class="nav-links">
       <li><a href="#features">Funktionen</a></li>
       <li><a href="#product">Produkt</a></li>
@@ -522,7 +527,12 @@ document.getElementById('oveula-c').innerHTML=
 <footer>
   <div class="c">
     <div class="fg">
-      <div class="fbl"><a href="#" class="logo"><div class="logo-mark">ff</div><div class="logo-text">fin<b>Flow</b></div></a><p class="ftag">Lokale Buchhaltungssoftware f&uuml;r Kleingewerbe und Freiberufler.</p><p class="fpub">Ein Produkt von <span id="fpub"></span> &middot; FlowWerk</p></div>
+      <div class="fbl"><a href="#" class="logo"><svg width="30" height="30" viewBox="0 0 64 64" style="border-radius:8px;flex-shrink:0">
+<rect width="64" height="64" rx="14" fill="#0E1A2E"/>
+<path d="M 24,20 L 14,32 L 24,44" stroke="#4070FF" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 40,20 L 50,32 L 40,44" stroke="#9b30d0" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="35" y1="18" x2="29" y2="46" stroke="#00C4B0" stroke-width="4.5" stroke-linecap="round"/>
+</svg><div class="logo-text">fin<b>Flow</b></div></a><p class="ftag">Lokale Buchhaltungssoftware f&uuml;r Kleingewerbe und Freiberufler.</p><p style="font-size:.78rem;color:#4A5C78;margin-top:14px;line-height:1.8">Ein Produkt von <strong style="color:#8899BB">FlowWerk</strong><br>Auch von FlowWerk: <a href="#" style="color:#4070FF" title="Personalplanung als Web-App">stafFlow</a> &ndash; Dienstplanung f&uuml;r Teams</p></div>
       <div class="fcol"><h4>Produkt</h4><ul><li><a href="#features">Funktionen</a></li><li><a href="#download">Download</a></li><li><a href="#pricing">Preise</a></li><li><a href="#" class="cl-link">Changelog</a></li></ul></div>
       <div class="fcol"><h4>Support</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#" id="fmail">E-Mail schreiben</a></li></ul></div>
       <div class="fcol"><h4>Rechtliches</h4><ul><li><button onclick="om('ovi')">Impressum</button></li><li><a href="datenschutz.html">Datenschutz</a></li><li><button onclick="om('ova')">AGB</button></li><li><button onclick="om('ovw')">Widerruf</button></li><li><button onclick="om('oveula')">EULA</button></li></ul></div>
