@@ -74,7 +74,24 @@ h1{font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:900;line-height:1.08;letter-
   box-shadow:0 24px 60px rgba(64,112,255,.15)}
 .pcard.disabled{opacity:.62}
 
-.pcard img{width:88px;height:88px;object-fit:contain;margin-bottom:22px}
+.pcard-icon{
+  width:96px;height:96px;border-radius:24px;margin-bottom:24px;
+  background:linear-gradient(160deg,#182338,#0E1826);
+  border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 1px 0 rgba(255,255,255,.06) inset,
+             0 14px 30px rgba(0,0,0,.45),
+             0 2px 6px rgba(0,0,0,.3);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
+}
+.pcard.active:hover .pcard-icon{
+  transform:translateY(-3px) scale(1.04);
+  box-shadow:0 1px 0 rgba(255,255,255,.08) inset,
+             0 22px 44px rgba(64,112,255,.22),
+             0 4px 10px rgba(0,0,0,.35);
+}
+.pcard img{width:60px;height:60px;object-fit:contain;
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,.35))}
 .pcard-name{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
 .pcard-desc{font-size:.9rem;color:var(--t2);line-height:1.6;margin-bottom:22px;flex:1}
 
@@ -158,7 +175,7 @@ footer{border-top:1px solid var(--border);padding:48px 0 28px}
 
       <!-- finFlow: aktiv -->
       <a href="finflow.html" class="pcard active" aria-label="finFlow öffnen">
-        <img src="assets_finflow_logo.png" alt="finFlow Logo">
+        <div class="pcard-icon"><img src="assets_finflow_logo_icon.png" alt="finFlow Logo"></div>
         <div class="pcard-name">finFlow</div>
         <div class="pcard-desc">Buchhaltungssoftware für Kleingewerbe &mdash; Rechnungen,
           Angebote, Mahnwesen und EÜR-Export. Vollständig lokal, kein Abo.</div>
@@ -168,7 +185,7 @@ footer{border-top:1px solid var(--border);padding:48px 0 28px}
 
       <!-- stafFlow: individuell im Einsatz -->
       <div class="pcard disabled" aria-label="stafFlow – individuelle Auftragsentwicklung">
-        <img src="assets_stafflow_logo.png" alt="stafFlow Logo">
+        <div class="pcard-icon"><img src="assets_stafflow_logo_icon.png" alt="stafFlow Logo"></div>
         <div class="pcard-name">stafFlow</div>
         <div class="pcard-desc">Dienstplan-App für kleine Teams &mdash; individuell entwickelt
           und aktuell im Einsatz bei einem Partnerunternehmen.</div>
@@ -177,7 +194,7 @@ footer{border-top:1px solid var(--border);padding:48px 0 28px}
 
       <!-- docFlow: individuell im Einsatz -->
       <div class="pcard disabled" aria-label="docFlow – individuelle Auftragsentwicklung">
-        <img src="assets_docflow_logo.png" alt="docFlow Logo">
+        <div class="pcard-icon"><img src="assets_docflow_logo_icon.png" alt="docFlow Logo"></div>
         <div class="pcard-name">docFlow</div>
         <div class="pcard-desc">Zeiterfassung und Dienstplanung für Arztpraxen &mdash;
           individuell entwickelt und aktuell im Einsatz bei einer Partnerpraxis.</div>
